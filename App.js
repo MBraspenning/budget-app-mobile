@@ -14,7 +14,7 @@ export default class App extends React.Component {
     render() {
     return (
       <View style={styles.container}>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row', flex: 1 }}>
             <ImageBackground
                 source={require('./assets/background.jpg')}
                 style={{ flex: 1, padding: 20 }}
@@ -26,7 +26,12 @@ export default class App extends React.Component {
                 />
             </ImageBackground>
         </View>
-        <Input />
+        <View style={{ flex: 1 }}>
+            <Input />
+        </View>
+        <View style={{ flex: 1 }}>
+            <Text>List goes here!</Text>
+        </View>
       </View>
     );
   }

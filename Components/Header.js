@@ -59,7 +59,8 @@ export default class Header extends React.Component
 const styles = StyleSheet.create({
     headerContainer: {
         flexDirection: 'column', 
-        alignItems: 'center',    
+        alignItems: 'center',
+        marginTop: 25,
     },
     textCenter: {
         textAlign: 'center',
