@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 
 import Header from './Components/Header';
 import Input from './Components/Input';
@@ -14,11 +14,18 @@ export default class App extends React.Component {
     render() {
     return (
       <View style={styles.container}>
-        <Header 
-            totalBudget={this.state.totalBudget}
-            totalIncome={this.state.totalIncome}
-            totalExpense={this.state.totalExpense}
-        />
+        <View style={{ flexDirection: 'row' }}>
+            <ImageBackground
+                source={require('./assets/background.jpg')}
+                style={{ flex: 1, padding: 20 }}
+            >
+                <Header 
+                    totalBudget={this.state.totalBudget}
+                    totalIncome={this.state.totalIncome}
+                    totalExpense={this.state.totalExpense}
+                />
+            </ImageBackground>
+        </View>
         <Input />
       </View>
     );

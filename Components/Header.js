@@ -40,7 +40,7 @@ export default class Header extends React.Component
     render()
     {
         return (
-            <View>
+            <View style={styles.headerContainer}>
                 <Text style={[styles.textCenter, styles.headerText]}>Budget For {this.state.month} :</Text>            
                 <Text style={[styles.textCenter, styles.headerText]}>€ {this.props.totalBudget}</Text>
                 <View style={styles.incExpWrapper}>
@@ -57,6 +57,10 @@ export default class Header extends React.Component
 }
 
 const styles = StyleSheet.create({
+    headerContainer: {
+        flexDirection: 'column', 
+        alignItems: 'center',    
+    },
     textCenter: {
         textAlign: 'center',
     },
