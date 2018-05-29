@@ -7,7 +7,7 @@ export default class App extends React.Component {
   constructor(props)
     {
         super(props);
-        this.state = { totalBudget: 50, totalIncome: 100, totalExpense: 50, modalVisible: false, description: '', amount: 0, type: '+'}
+        this.state = { totalBudget: 50.00, totalIncome: 100.00, totalExpense: 50.00, modalVisible: false, description: '', amount: 0, type: '+'}
     }
     
     submit = () => {        
@@ -19,7 +19,7 @@ export default class App extends React.Component {
     render() {
         return (
           <View style={styles.container}>
-            <View style={{ flexDirection: 'row', flex: 1 }}>
+            <View style={{ flexDirection: 'row', flex: 2 }}>
                 <ImageBackground
                     source={require('./assets/background.jpg')}
                     style={{ flex: 1, padding: 20 }}
@@ -66,7 +66,7 @@ export default class App extends React.Component {
                 </View>
             </Modal>
             
-            <View style={{ flex: 2 }}>
+            <View style={{ flex: 3 }}>
                 <Text>List goes here!</Text>
                 <TouchableOpacity
                    onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }

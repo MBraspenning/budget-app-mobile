@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     headerText: {
-        fontSize: 25,    
+        fontSize: 30,    
     },
     incExpWrapper: {
         marginTop: 15,
@@ -93,10 +93,10 @@ const styles = StyleSheet.create({
     },
     successText: {
         color: '#155724',
-        fontSize: 15,
+        fontSize: 18,
     },
     dangerText: {
         color: '#721c24',
-        fontSize: 15,
+        fontSize: 18,
     }
 });
