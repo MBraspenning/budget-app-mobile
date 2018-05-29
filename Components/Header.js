@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         fontSize: 30,    
     },
     incExpWrapper: {
-        marginTop: 15,
+        marginTop: 25,
     },
     successBackground: {
         backgroundColor: '#c3e6cb',

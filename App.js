@@ -67,12 +67,16 @@ export default class App extends React.Component {
             </Modal>
             
             <View style={{ flex: 3 }}>
-                <Text>List goes here!</Text>
-                <TouchableOpacity
-                   onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
-                   >
-                    <Text>Add Item</Text>
-                </TouchableOpacity>
+                <View style={{ flex: 9 }}>
+                    <Text>List goes here!</Text>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <TouchableOpacity
+                       onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
+                       >
+                        <Text style={{ textAlign: 'center' }}>Add Item</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
           </View>
         );
@@ -86,6 +90,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    
     modal: {
         backgroundColor: 'rgba(135,206,250,.5)', 
         flex: 1,
