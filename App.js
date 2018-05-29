@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, Modal, TouchableOpacity, TextInput, Alert } from 'react-native';
 
 import Header from './Components/Header';
+import List from './Components/List';
 
 export default class App extends React.Component {
   constructor(props)
@@ -68,7 +69,7 @@ export default class App extends React.Component {
             
             <View style={{ flex: 3 }}>
                 <View style={{ flex: 9 }}>
-                    <Text>List goes here!</Text>
+                    <List />
                 </View>
                 <View style={{ flex: 1 }}>
                     <TouchableOpacity
