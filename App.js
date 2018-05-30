@@ -1,5 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, ImageBackground, Modal, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { 
+    StyleSheet, 
+    Text, 
+    View, 
+    ScrollView, 
+    ImageBackground,
+    Modal,
+    TouchableOpacity,
+    TextInput,
+    Alert,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native';
 
 import Header from './Components/Header';
 import List from './Components/List';
@@ -8,7 +20,7 @@ export default class App extends React.Component {
   constructor(props)
     {
         super(props);
-        this.state = { totalBudget: 50.00, totalIncome: 100.00, totalExpense: 50.00, modalVisible: false, description: '', amount: 0, type: '+'}
+        this.state = { totalBudget: 50.00, totalIncome: 100.00, totalExpense: 50.00, modalVisible: false, description: '', amount: 0, type: 'income'}
     }
     
     submit = () => {        
@@ -34,37 +46,96 @@ export default class App extends React.Component {
             </View>
             
             <Modal visible={this.state.modalVisible}>
-                <View style={styles.modal}>
-                    <View style={styles.inputWrapper}>
-                        <TouchableOpacity onPress={ () => 
-                            this.state.type == '+' 
-                            ? this.setState({type: '-'}) 
-                            : this.setState({type: '+'})}
-                            style={{ width: 20, }}
-                        >
-                            <Text style={styles.input}>{this.state.type}</Text>
-                        </TouchableOpacity>
-                        <View style={styles.textInputWrapper}>
-                            <TextInput 
-                                placeholder='Description'
-                                onChangeText={ (desc) => this.setState({description: desc}) } 
-                                style={[styles.input, styles.textInput]}   
-                            />
-                            <TextInput 
-                                placeholder='Amount'
-                                keyboardType='numeric'
-                                onChangeText={ (amount) => this.setState({amount: amount}) }
-                                style={[styles.input, styles.textInput]}
-                            />
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View style={styles.modal}>
+                        <View style={[styles.inputWrapper, {flex: 1}]}>
+
+                            <View style={[styles.elementWrapper, { flexDirection: 'row' }]}>
+                                <TouchableOpacity onPress={ () => 
+                                        this.setState({type: 'income'})
+                                    }
+                                    style={[styles.switchButtonInc, 
+                                        this.state.type == 'income' 
+                                        ? { backgroundColor: '#c3e6cb' }
+                                        : null
+                                    ]}
+                                >
+                                    <Text style={[styles.input, { color: '#155724' }]}>Income</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={ () => 
+                                        this.setState({type: 'expense'})
+                                    } 
+                                    style={[styles.switchButtonExp, 
+                                        this.state.type == 'expense' 
+                                        ? { backgroundColor: '#f5c6cb' }
+                                        : null
+                                    ]}
+                                >
+                                    <Text style={[styles.input, { color: '#721c24' }]}>Expense</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={[styles.elementWrapper, 
+                                          { 
+                                            borderWidth: 1, 
+                                            borderColor: 'rgba(0,0,0,.125)', 
+                                            borderRadius: 5,
+                                            paddingVertical: 10,
+                                            paddingHorizontal: 20,
+                                            width: 250,
+                                          }
+                                         ]}>
+                                <TextInput 
+                                    placeholder='Description'
+                                    onChangeText={ (desc) => this.setState({description: desc}) } 
+                                    style={[styles.input, styles.textInput]}   
+                                />
+                            </View>
+
+                            <View style={[styles.elementWrapper, 
+                                          { 
+                                            borderWidth: 1, 
+                                            borderColor: 'rgba(0,0,0,.125)', 
+                                            borderRadius: 5,
+                                            paddingVertical: 10,
+                                            paddingHorizontal: 20,
+                                            width: 250,
+                                          }
+                                         ]}>
+                                <TextInput 
+                                    placeholder='Amount'
+                                    keyboardType='numeric'
+                                    onChangeText={ (amount) => this.setState({amount: amount}) }
+                                    style={[styles.input, styles.textInput]}
+                                />
+                            </View>
+
+                            <View style={styles.elementWrapper}>
+                                <TouchableOpacity 
+                                   onPress={this.submit}
+                                   style={
+                                    { 
+                                        borderWidth: 1, 
+                                        borderColor: '#b8daff', 
+                                        borderRadius: 5, 
+                                        paddingVertical: 10, 
+                                        paddingHorizontal: 20,
+                                        backgroundColor: '#cce5ff'
+                                    }}
+                                >
+                                    <Text style={[styles.input, { color: '#004085' }]}>Add Item</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={[styles.elementWrapper, {  }]}>
+                                <TouchableOpacity onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }>
+                                    <Text style={{ fontSize: 20, textAlign: 'right' }}>Back</Text>
+                                </TouchableOpacity> 
+                            </View>                                               
                         </View>
-                        <TouchableOpacity onPress={this.submit}>
-                            <Text style={styles.input}>Add</Text>
-                        </TouchableOpacity>                                               
+
                     </View>
-                    <TouchableOpacity onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }>
-                        <Text>Back</Text>
-                    </TouchableOpacity> 
-                </View>
+                </TouchableWithoutFeedback>
             </Modal>
             
             <View style={{ flexDirection: 'row', flex: 3 }}>
@@ -97,15 +168,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     modal: {
-        backgroundColor: 'rgba(135,206,250,.5)', 
+        backgroundColor: '#fff', 
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
     inputWrapper: {
         marginTop: 30,
-        flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
     },
     textInputWrapper: {
         marginHorizontal: 40,
@@ -113,8 +184,11 @@ const styles = StyleSheet.create({
     input: {
         fontSize: 25,    
     },
+    elementWrapper: {
+        marginVertical: 20,    
+    },
     textInput: {
-        marginVertical: 10,    
+        
     },
     submit: {
         borderWidth: 1,
@@ -125,5 +199,21 @@ const styles = StyleSheet.create({
     },
     submitText: {
         color: '#155724',
+    },
+    switchButtonInc: {
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,.125)',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderBottomLeftRadius: 5,
+        borderTopLeftRadius: 5,
+    },
+    switchButtonExp: {
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,.125)',
+        padding: 10,
+        paddingHorizontal: 20,
+        borderBottomRightRadius: 5,
+        borderTopRightRadius: 5,
     }
 });
