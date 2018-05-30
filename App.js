@@ -67,19 +67,21 @@ export default class App extends React.Component {
                 </View>
             </Modal>
             
-            <View style={{ flex: 3 }}>
-                <View style={{ flex: 9 }}>
+            <View style={{ flexDirection: 'row', flex: 3 }}>
+                <View style={{ flex: 1 }}>
                     <List />
                 </View>
-                <View style={{ flex: 1 }}>
-                    <TouchableOpacity
-                       onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
-                       >
-                        <Text style={{ textAlign: 'center' }}>Add Item</Text>
-                    </TouchableOpacity>
-                </View>
+                
             </View>
-          </View>
+            
+            <View style={{ flex: 0, padding: 30, }}>
+                <TouchableOpacity
+                   onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
+                   >
+                    <Text style={{ textAlign: 'center' }}>Add Item</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
         );
     }
 }
