@@ -8,7 +8,9 @@ export default class List extends React.Component
         this.state = { 
             incomeItems: [
                 {id: '0', item: 'Salary', amount: '50.00'}, 
-                {id: '1', item: 'Project', amount: '50.00'}
+                {id: '1', item: 'Project', amount: '50.00'},
+                {id: '2', item: 'Project', amount: '50.00'},
+                {id: '3', item: 'Project', amount: '50.00'},
             ], 
             expenseItems: [
                 {id: '0', item: 'Huur', amount: '50.00'}

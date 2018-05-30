@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, Modal, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, ImageBackground, Modal, TouchableOpacity, TextInput, Alert } from 'react-native';
 
 import Header from './Components/Header';
 import List from './Components/List';
@@ -68,18 +68,21 @@ export default class App extends React.Component {
             </Modal>
             
             <View style={{ flexDirection: 'row', flex: 3 }}>
-                <View style={{ flex: 1 }}>
+                <ScrollView style={{ flex: 1 }}>
                     <List />
-                </View>
+                </ScrollView>
                 
             </View>
             
-            <View style={{ flex: 0, padding: 30, }}>
+            <View style={{ flexDirection: 'row', flex: 0.5 }}>
+                <View style={{ flex: 1, alignItems: 'center' }}>
                 <TouchableOpacity
                    onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
+                   style={{ padding: 10, borderWidth: 1, borderColor: 'blue', borderRadius: 5 }}
                    >
-                    <Text style={{ textAlign: 'center' }}>Add Item</Text>
+                    <Text style={{ textAlign: 'center', fontSize: 20 }}>Add Item</Text>
                 </TouchableOpacity>
+                </View>
             </View>
         </View>
         );
@@ -93,7 +96,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    
     modal: {
         backgroundColor: 'rgba(135,206,250,.5)', 
         flex: 1,
