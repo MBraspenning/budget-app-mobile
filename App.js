@@ -60,7 +60,7 @@ export default class App extends React.Component {
                                         : null
                                     ]}
                                 >
-                                    <Text style={[styles.input, { color: '#155724' }]}>Income</Text>
+                                    <Text style={[styles.input, { color: '#155724', textAlign: 'center' }]}>Income</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={ () => 
                                         this.setState({type: 'expense'})
@@ -71,7 +71,7 @@ export default class App extends React.Component {
                                         : null
                                     ]}
                                 >
-                                    <Text style={[styles.input, { color: '#721c24' }]}>Expense</Text>
+                                    <Text style={[styles.input, { color: '#721c24', textAlign: 'center' }]}>Expense</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -82,7 +82,7 @@ export default class App extends React.Component {
                                             borderRadius: 5,
                                             paddingVertical: 10,
                                             paddingHorizontal: 20,
-                                            width: 250,
+                                            width: 300,
                                           }
                                          ]}>
                                 <TextInput 
@@ -99,7 +99,7 @@ export default class App extends React.Component {
                                             borderRadius: 5,
                                             paddingVertical: 10,
                                             paddingHorizontal: 20,
-                                            width: 250,
+                                            width: 300,
                                           }
                                          ]}>
                                 <TextInput 
@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderBottomLeftRadius: 5,
         borderTopLeftRadius: 5,
+        width: 150,
     },
     switchButtonExp: {
         borderWidth: 1,
@@ -215,5 +216,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderBottomRightRadius: 5,
         borderTopRightRadius: 5,
+        width: 150,
     }
 });
