@@ -28,6 +28,10 @@ export default class App extends React.Component {
         
         console.log(this.state.type + ' ' + this.state.description + ' ' + this.state.amount);
     }
+    
+//    showModal = () => {
+//        this.setState({ modalVisible: !this.state.modalVisible });
+//    }
         
     render() {
         return (
@@ -142,7 +146,6 @@ export default class App extends React.Component {
                 <ScrollView style={{ flex: 1 }}>
                     <List />
                 </ScrollView>
-                
             </View>
             
             <View style={{ flexDirection: 'row', flex: 0.5 }}>

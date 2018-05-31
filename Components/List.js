@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, Text, Image, TouchableOpacity, Alert } from 'react-native';
+import { 
+    View,
+    FlatList,
+    StyleSheet,
+    Text,
+    Image,
+    TouchableOpacity,
+    Alert,
+    Modal,
+    TouchableWithoutFeedback,
+    Keyboard,
+    TextInput
+} from 'react-native';
 
 export default class List extends React.Component
 {
     constructor(props) {
         super(props);
+        
         this.state = { 
             incomeItems: [
                 {id: '0', item: 'Salary', amount: '50.00'}, 
@@ -14,12 +27,21 @@ export default class List extends React.Component
             ], 
             expenseItems: [
                 {id: '0', item: 'Huur', amount: '50.00'}
-            ] 
+            ],
+            modalVisible: false
         };
+        
+//        this.showModalFromChild = this.showModalFromChild.bind(this);
     }
  
+//    showModalFromChild() {
+//        this.props.showModal();
+//    }
+    
     render() {
         return (
+            <View>
+            
             <View>
                 <View>
                     <Text style={styles.incomeHeader}>Income</Text>
@@ -41,7 +63,7 @@ export default class List extends React.Component
                                             </Text>
                                         </View>
                                         <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                            <TouchableOpacity onPress={ () => Alert.alert('edit button clicked!') }
+                                            <TouchableOpacity onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
                                                style={{ marginLeft: 15 }}>
                                                 <Image source={require('../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>
@@ -74,7 +96,7 @@ export default class List extends React.Component
                                             </Text>
                                         </View>
                                         <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                            <TouchableOpacity onPress={ () => Alert.alert('edit button clicked!') }
+                                            <TouchableOpacity onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
                                                style={{ marginLeft: 15 }}>
                                                 <Image source={require('../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>
@@ -86,8 +108,103 @@ export default class List extends React.Component
                                 </View>
                         } 
                     />
-                </View>
-            </View>              
+                </View> 
+            </View>
+            
+            <Modal visible={this.state.modalVisible}>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View style={styles.modal}>
+                        <View style={[styles.inputWrapper, {flex: 1}]}>
+
+                            <View style={[styles.elementWrapper, { flexDirection: 'row' }]}>
+                                <TouchableOpacity onPress={ () => 
+                                        this.setState({type: 'income'})
+                                    }
+                                    style={[styles.switchButtonInc, 
+                                        this.state.type == 'income' 
+                                        ? { backgroundColor: '#c3e6cb' }
+                                        : null
+                                    ]}
+                                >
+                                    <Text style={[styles.input, { color: '#155724', textAlign: 'center' }]}>Income</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={ () => 
+                                        this.setState({type: 'expense'})
+                                    } 
+                                    style={[styles.switchButtonExp, 
+                                        this.state.type == 'expense' 
+                                        ? { backgroundColor: '#f5c6cb' }
+                                        : null
+                                    ]}
+                                >
+                                    <Text style={[styles.input, { color: '#721c24', textAlign: 'center' }]}>Expense</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={[styles.elementWrapper, 
+                                          { 
+                                            borderWidth: 1, 
+                                            borderColor: 'rgba(0,0,0,.125)', 
+                                            borderRadius: 5,
+                                            paddingVertical: 10,
+                                            paddingHorizontal: 20,
+                                            width: 300,
+                                          }
+                                         ]}>
+                                <TextInput 
+                                    placeholder='Description'
+                                    onChangeText={ (desc) => this.setState({description: desc}) } 
+                                    style={[styles.input, styles.textInput]}   
+                                />
+                            </View>
+
+                            <View style={[styles.elementWrapper, 
+                                          { 
+                                            borderWidth: 1, 
+                                            borderColor: 'rgba(0,0,0,.125)', 
+                                            borderRadius: 5,
+                                            paddingVertical: 10,
+                                            paddingHorizontal: 20,
+                                            width: 300,
+                                          }
+                                         ]}>
+                                <TextInput 
+                                    placeholder='Amount'
+                                    keyboardType='numeric'
+                                    onChangeText={ (amount) => this.setState({amount: amount}) }
+                                    style={[styles.input, styles.textInput]}
+                                />
+                            </View>
+
+                            <View style={styles.elementWrapper}>
+                                <TouchableOpacity 
+                                   onPress={this.submit}
+                                   style={
+                                    { 
+                                        borderWidth: 1, 
+                                        borderColor: '#b8daff', 
+                                        borderRadius: 5, 
+                                        paddingVertical: 10, 
+                                        paddingHorizontal: 20,
+                                        backgroundColor: '#cce5ff'
+                                    }}
+                                >
+                                    <Text style={[styles.input, { color: '#004085' }]}>Edit Item</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={[styles.elementWrapper, {  }]}>
+                                <TouchableOpacity onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }>
+                                    <Text style={{ fontSize: 20, textAlign: 'right' }}>Back</Text>
+                                </TouchableOpacity> 
+                            </View>                                               
+                        </View>
+
+                    </View>
+                </TouchableWithoutFeedback>
+            </Modal>
+            
+            </View>
         );
     }
 }
@@ -114,4 +231,52 @@ const styles = StyleSheet.create({
         borderTopColor: 'rgba(0,0,0,.125)',
         padding: 20,
     },
+    modal: {
+        backgroundColor: '#fff', 
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inputWrapper: {
+        marginTop: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textInputWrapper: {
+        marginHorizontal: 40,
+    },
+    input: {
+        fontSize: 25,    
+    },
+    elementWrapper: {
+        marginVertical: 20,    
+    },
+    submit: {
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: '#155724',
+        backgroundColor: '#c3e6cb',
+        padding: 10,
+    },
+    submitText: {
+        color: '#155724',
+    },
+    switchButtonInc: {
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,.125)',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderBottomLeftRadius: 5,
+        borderTopLeftRadius: 5,
+        width: 150,
+    },
+    switchButtonExp: {
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,.125)',
+        padding: 10,
+        paddingHorizontal: 20,
+        borderBottomRightRadius: 5,
+        borderTopRightRadius: 5,
+        width: 150,
+    }
 });
