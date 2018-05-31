@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, Text } from 'react-native';
+import { View, FlatList, StyleSheet, Text, Image, TouchableOpacity, Alert } from 'react-native';
 
 export default class List extends React.Component
 {
@@ -17,9 +17,7 @@ export default class List extends React.Component
             ] 
         };
     }
-    
-    
-    
+ 
     render() {
         return (
             <View>
@@ -36,10 +34,21 @@ export default class List extends React.Component
                                             {item.item}
                                         </Text>
                                     </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[ styles.listItem, { color: '#28a745', textAlign: 'right' }]}>
-                                            + {item.amount}
-                                        </Text>
+                                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                                        <View style={{ flex: 3, flexDirection: 'row', justifyContent: 'flex-end' }}>
+                                            <Text style={[ styles.listItem, { color: '#28a745', textAlign: 'right' }]}>
+                                                + {item.amount} 
+                                            </Text>
+                                        </View>
+                                        <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
+                                            <TouchableOpacity onPress={ () => Alert.alert('edit button clicked!') }
+                                               style={{ marginLeft: 15 }}>
+                                                <Image source={require('../assets/edit.png')} style={{ width: 20, height: 20 }}/>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => Alert.alert('delete button clicked!') }>
+                                                <Image source={require('../assets/garbage.png')} style={{ width: 20, height: 20 }}/>
+                                            </TouchableOpacity>                                            
+                                        </View>
                                     </View>
                                 </View>
                         }   
@@ -58,11 +67,22 @@ export default class List extends React.Component
                                             {item.item}
                                         </Text>
                                     </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[ styles.listItem, { color: '#dc3545', textAlign: 'right' }]}>
-                                            - {item.amount}
-                                        </Text>
-                                    </View>
+                                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                                        <View style={{ flex: 3, flexDirection: 'row', justifyContent: 'flex-end' }}>
+                                            <Text style={[ styles.listItem, { color: '#dc3545', textAlign: 'right' }]}>
+                                                - {item.amount} 
+                                            </Text>
+                                        </View>
+                                        <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
+                                            <TouchableOpacity onPress={ () => Alert.alert('edit button clicked!') }
+                                               style={{ marginLeft: 15 }}>
+                                                <Image source={require('../assets/edit.png')} style={{ width: 20, height: 20 }}/>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => Alert.alert('delete button clicked!') }>
+                                                <Image source={require('../assets/garbage.png')} style={{ width: 20, height: 20 }}/>
+                                            </TouchableOpacity>                                            
+                                        </View>
+                                    </View>                                    
                                 </View>
                         } 
                     />
