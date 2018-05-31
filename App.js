@@ -28,10 +28,6 @@ export default class App extends React.Component {
         
         console.log(this.state.type + ' ' + this.state.description + ' ' + this.state.amount);
     }
-    
-//    showModal = () => {
-//        this.setState({ modalVisible: !this.state.modalVisible });
-//    }
         
     render() {
         return (

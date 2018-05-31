@@ -20,23 +20,39 @@ export default class List extends React.Component
         
         this.state = { 
             incomeItems: [
-                {id: '0', item: 'Salary', amount: '50.00'}, 
-                {id: '1', item: 'Project', amount: '50.00'},
-                {id: '2', item: 'Project', amount: '50.00'},
-                {id: '3', item: 'Project', amount: '50.00'},
+                {id: '0', description: 'Salary', amount: '50.00'}, 
+                {id: '1', description: 'Project', amount: '50.00'},
+                {id: '2', description: 'Project', amount: '50.00'},
+                {id: '3', description: 'Project', amount: '50.00'},
             ], 
             expenseItems: [
-                {id: '0', item: 'Huur', amount: '50.00'}
+                {id: '0', description: 'Huur', amount: '50.00'}
             ],
-            modalVisible: false
-        };
+            modalVisible: false,
+            itemToEditType: '',
+            itemToEditId: '',
+            itemToEditDescription: '',
+            itemToEditAmount: '',
+        };        
+    }    
+
+    showEditForm = (type, id, description, amount) => {
         
-//        this.showModalFromChild = this.showModalFromChild.bind(this);
+        this.setState({
+            itemToEditType: type,
+            itemToEditId: id,
+            itemToEditDescription: description,
+            itemToEditAmount: amount    
+        });
+        
+        this.setState({ modalVisible: !this.state.modalVisible });
     }
- 
-//    showModalFromChild() {
-//        this.props.showModal();
-//    }
+
+    submit = () => {        
+        this.setState({ modalVisible: !this.state.modalVisible })
+        
+        console.log(this.state.itemToEditType + ' ' + this.state.itemToEditDescription + ' ' + this.state.itemToEditAmount);
+    }
     
     render() {
         return (
@@ -53,7 +69,7 @@ export default class List extends React.Component
                                 <View style={styles.itemWrapper}>
                                     <View style={{ flex: 1 }}>
                                         <Text style={[styles.listItem, { textAlign: 'left' }]}>
-                                            {item.item}
+                                            {item.description}
                                         </Text>
                                     </View>
                                     <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -63,7 +79,7 @@ export default class List extends React.Component
                                             </Text>
                                         </View>
                                         <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                            <TouchableOpacity onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
+                                            <TouchableOpacity onPress={ () => this.showEditForm('income', item.id, item.description, item.amount) }
                                                style={{ marginLeft: 15 }}>
                                                 <Image source={require('../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>
@@ -86,7 +102,7 @@ export default class List extends React.Component
                                 <View style={styles.itemWrapper}>
                                     <View style={{ flex: 1 }}>
                                         <Text style={[styles.listItem, { textAlign: 'left' }]}>
-                                            {item.item}
+                                            {item.description}
                                         </Text>
                                     </View>
                                     <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -96,7 +112,7 @@ export default class List extends React.Component
                                             </Text>
                                         </View>
                                         <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                            <TouchableOpacity onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
+                                            <TouchableOpacity onPress={ () => this.showEditForm('expense', item.id, item.description, item.amount) }
                                                style={{ marginLeft: 15 }}>
                                                 <Image source={require('../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>
@@ -117,22 +133,18 @@ export default class List extends React.Component
                         <View style={[styles.inputWrapper, {flex: 1}]}>
 
                             <View style={[styles.elementWrapper, { flexDirection: 'row' }]}>
-                                <TouchableOpacity onPress={ () => 
-                                        this.setState({type: 'income'})
-                                    }
+                                <TouchableOpacity
                                     style={[styles.switchButtonInc, 
-                                        this.state.type == 'income' 
+                                        this.state.itemToEditType == 'income' 
                                         ? { backgroundColor: '#c3e6cb' }
                                         : null
                                     ]}
                                 >
                                     <Text style={[styles.input, { color: '#155724', textAlign: 'center' }]}>Income</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={ () => 
-                                        this.setState({type: 'expense'})
-                                    } 
+                                <TouchableOpacity
                                     style={[styles.switchButtonExp, 
-                                        this.state.type == 'expense' 
+                                        this.state.itemToEditType == 'expense' 
                                         ? { backgroundColor: '#f5c6cb' }
                                         : null
                                     ]}
@@ -153,7 +165,8 @@ export default class List extends React.Component
                                          ]}>
                                 <TextInput 
                                     placeholder='Description'
-                                    onChangeText={ (desc) => this.setState({description: desc}) } 
+                                    value={this.state.itemToEditDescription}
+                                    onChangeText={ (desc) => this.setState({itemToEditDescription: desc}) } 
                                     style={[styles.input, styles.textInput]}   
                                 />
                             </View>
@@ -170,8 +183,9 @@ export default class List extends React.Component
                                          ]}>
                                 <TextInput 
                                     placeholder='Amount'
+                                    value={this.state.itemToEditAmount}
                                     keyboardType='numeric'
-                                    onChangeText={ (amount) => this.setState({amount: amount}) }
+                                    onChangeText={ (amount) => this.setState({itemToEditAmount: amount}) }
                                     style={[styles.input, styles.textInput]}
                                 />
                             </View>
