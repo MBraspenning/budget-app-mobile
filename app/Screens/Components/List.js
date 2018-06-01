@@ -81,10 +81,10 @@ export default class List extends React.Component
                                         <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
                                             <TouchableOpacity onPress={ () => this.showEditForm('income', item.id, item.description, item.amount) }
                                                style={{ marginLeft: 15 }}>
-                                                <Image source={require('../../assets/edit.png')} style={{ width: 20, height: 20 }}/>
+                                                <Image source={require('../../../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>
                                             <TouchableOpacity onPress={ () => Alert.alert('delete button clicked!') }>
-                                                <Image source={require('../../assets/garbage.png')} style={{ width: 20, height: 20 }}/>
+                                                <Image source={require('../../../assets/garbage.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>                                            
                                         </View>
                                     </View>
@@ -114,10 +114,10 @@ export default class List extends React.Component
                                         <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
                                             <TouchableOpacity onPress={ () => this.showEditForm('expense', item.id, item.description, item.amount) }
                                                style={{ marginLeft: 15 }}>
-                                                <Image source={require('../../assets/edit.png')} style={{ width: 20, height: 20 }}/>
+                                                <Image source={require('../../../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>
                                             <TouchableOpacity onPress={ () => Alert.alert('delete button clicked!') }>
-                                                <Image source={require('../../assets/garbage.png')} style={{ width: 20, height: 20 }}/>
+                                                <Image source={require('../../../assets/garbage.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>                                            
                                         </View>
                                     </View>                                    

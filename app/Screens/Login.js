@@ -1,9 +1,15 @@
 import React from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+
+import { login } from '../Authentication';
 
 export default ({ navigation }) => (
     <View>
-        <Text>Hello world!</Text>
+        <TouchableOpacity
+           onPress={() => login().then(() => navigation.navigate('Main'))}
+           >
+            <Text>Login</Text>                    
+        </TouchableOpacity>
     </View>
 )
