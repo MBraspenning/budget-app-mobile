@@ -18,8 +18,6 @@ import Header from './Components/Header';
 import List from './Components/List';
 import LogoutComponent from './Components/LogoutComponent';
 
-import { logout } from '../Authentication';
-
 export default class Main extends Component 
 {    
     constructor(props)
@@ -159,13 +157,14 @@ export default class Main extends Component
             
             <View style={{ flexDirection: 'row', flex: 0.5 }}>
                 <View style={{ flex: 1, alignItems: 'center' }}>
-                <TouchableOpacity
-                   onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
-                   style={{ padding: 10, borderWidth: 1, borderColor: 'blue', borderRadius: 5 }}
-                   >
-                    <Text style={{ textAlign: 'center', fontSize: 20 }}>Add Item</Text>
-                </TouchableOpacity>
-                <LogoutComponent navigation={this.props.navigation} />                
+                    <TouchableOpacity
+                       onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
+                       style={{ padding: 10, borderWidth: 1, borderColor: 'blue', borderRadius: 5 }}
+                       >
+                        <Text style={{ textAlign: 'center', fontSize: 20 }}>Add Item</Text>
+                    </TouchableOpacity>
+                    
+                    <LogoutComponent navigation={this.props.navigation} />                
                 </View>
             </View>
         </View>
@@ -200,9 +199,6 @@ const styles = StyleSheet.create({
     },
     elementWrapper: {
         marginVertical: 20,    
-    },
-    textInput: {
-        
     },
     submit: {
         borderWidth: 1,

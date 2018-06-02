@@ -2,7 +2,11 @@ import { AsyncStorage } from 'react-native';
 
 export const USER_KEY = 'auth-test-key';
 
-export const login = () => AsyncStorage.setItem(USER_KEY, 'true');
+export const login = (claims) => {
+    console.log(claims);
+    
+    return AsyncStorage.setItem(USER_KEY, 'true');
+}
 
 export const logout = () => AsyncStorage.removeItem(USER_KEY);
 
