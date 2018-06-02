@@ -16,6 +16,7 @@ import {
 
 import Header from './Components/Header';
 import List from './Components/List';
+import LogoutComponent from './Components/LogoutComponent';
 
 import { logout } from '../Authentication';
 
@@ -164,9 +165,7 @@ export default class Main extends Component
                    >
                     <Text style={{ textAlign: 'center', fontSize: 20 }}>Add Item</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={ () => logout() }>
-                    <Text>Logout</Text>
-                </TouchableOpacity>
+                <LogoutComponent navigation={this.props.navigation} />                
                 </View>
             </View>
         </View>

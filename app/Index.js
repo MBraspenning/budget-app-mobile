@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { SignedOut } from './Router';
-import Main from './Screens/Main';
+import { createRootNavigator } from './Router';
 
 import { isLoggedIn } from './Authentication';
 
@@ -14,7 +13,7 @@ export default class App extends React.Component {
         }
     }
     
-    componentDidMount() 
+    componentWillMount() 
     {
         isLoggedIn()
             .then(res => this.setState({ isLoggedIn: res}))
@@ -22,18 +21,8 @@ export default class App extends React.Component {
     }
         
     render() {
-        if (this.state.isLoggedIn) 
-        {
-            return (
-                <Main />
-            );
-        } 
-        else 
-        {
-            return (
-                <SignedOut />
-            );
-        }
+        const Layout = createRootNavigator(isLoggedIn);
+        return <Layout />;
     }
 }
 
