@@ -55,100 +55,7 @@ export default class Main extends Component
                     />
                 </ImageBackground>
             </View>
-            
-            <Modal visible={this.state.modalVisible}>
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View style={styles.modal}>
-                        <View style={[styles.inputWrapper, {flex: 1}]}>
-
-                            <View style={[styles.elementWrapper, { flexDirection: 'row' }]}>
-                                <TouchableOpacity onPress={ () => 
-                                        this.setState({type: 'income'})
-                                    }
-                                    style={[styles.switchButtonInc, 
-                                        this.state.type == 'income' 
-                                        ? { backgroundColor: '#c3e6cb' }
-                                        : null
-                                    ]}
-                                >
-                                    <Text style={[styles.input, { color: '#155724', textAlign: 'center' }]}>Income</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={ () => 
-                                        this.setState({type: 'expense'})
-                                    } 
-                                    style={[styles.switchButtonExp, 
-                                        this.state.type == 'expense' 
-                                        ? { backgroundColor: '#f5c6cb' }
-                                        : null
-                                    ]}
-                                >
-                                    <Text style={[styles.input, { color: '#721c24', textAlign: 'center' }]}>Expense</Text>
-                                </TouchableOpacity>
-                            </View>
-
-                            <View style={[styles.elementWrapper, 
-                                          { 
-                                            borderWidth: 1, 
-                                            borderColor: 'rgba(0,0,0,.125)', 
-                                            borderRadius: 5,
-                                            paddingVertical: 10,
-                                            paddingHorizontal: 20,
-                                            width: 300,
-                                          }
-                                         ]}>
-                                <TextInput 
-                                    placeholder='Description'
-                                    onChangeText={ (desc) => this.setState({description: desc}) } 
-                                    style={[styles.input, styles.textInput]}   
-                                />
-                            </View>
-
-                            <View style={[styles.elementWrapper, 
-                                          { 
-                                            borderWidth: 1, 
-                                            borderColor: 'rgba(0,0,0,.125)', 
-                                            borderRadius: 5,
-                                            paddingVertical: 10,
-                                            paddingHorizontal: 20,
-                                            width: 300,
-                                          }
-                                         ]}>
-                                <TextInput 
-                                    placeholder='Amount'
-                                    keyboardType='numeric'
-                                    onChangeText={ (amount) => this.setState({amount: amount}) }
-                                    style={[styles.input, styles.textInput]}
-                                />
-                            </View>
-
-                            <View style={styles.elementWrapper}>
-                                <TouchableOpacity 
-                                   onPress={this.submit}
-                                   style={
-                                    { 
-                                        borderWidth: 1, 
-                                        borderColor: '#b8daff', 
-                                        borderRadius: 5, 
-                                        paddingVertical: 10, 
-                                        paddingHorizontal: 20,
-                                        backgroundColor: '#cce5ff'
-                                    }}
-                                >
-                                    <Text style={[styles.input, { color: '#004085' }]}>Add Item</Text>
-                                </TouchableOpacity>
-                            </View>
-
-                            <View style={[styles.elementWrapper, {  }]}>
-                                <TouchableOpacity onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }>
-                                    <Text style={{ fontSize: 20, textAlign: 'right' }}>Back</Text>
-                                </TouchableOpacity> 
-                            </View>                                               
-                        </View>
-
-                    </View>
-                </TouchableWithoutFeedback>
-            </Modal>
-            
+                        
             <View style={{ flexDirection: 'row', flex: 3 }}>
                 <ScrollView style={{ flex: 1 }}>
                     <List />
@@ -156,14 +63,7 @@ export default class Main extends Component
             </View>
             
             <View style={{ flexDirection: 'row', flex: 0.5 }}>
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                    <TouchableOpacity
-                       onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }
-                       style={{ padding: 10, borderWidth: 1, borderColor: 'blue', borderRadius: 5 }}
-                       >
-                        <Text style={{ textAlign: 'center', fontSize: 20 }}>Add Item</Text>
-                    </TouchableOpacity>
-                    
+                <View style={{ flex: 1, alignItems: 'center' }}>                    
                     <LogoutComponent navigation={this.props.navigation} />                
                 </View>
             </View>

@@ -22,6 +22,11 @@ export default class AddItem extends Component
         }
     }
     
+    submit = () => {                
+        console.log(this.state.type + ' ' + this.state.description + ' ' + this.state.amount);
+        this.props.navigation.navigate('Main');
+    }
+    
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -94,11 +99,11 @@ export default class AddItem extends Component
                                 style={
                                     { 
                                         borderWidth: 1, 
-                                            borderColor: '#b8daff', 
-                                                borderRadius: 5, 
-                                                    paddingVertical: 10, 
-                                                        paddingHorizontal: 20,
-                                                            backgroundColor: '#cce5ff'
+                                        borderColor: '#b8daff', 
+                                        borderRadius: 5, 
+                                        paddingVertical: 10, 
+                                        paddingHorizontal: 20,
+                                        backgroundColor: '#cce5ff'
                                     }}
                                 >
                                 <Text style={[styles.input, { color: '#004085' }]}>Add Item</Text>
@@ -106,7 +111,7 @@ export default class AddItem extends Component
                         </View>
 
                         <View style={[styles.elementWrapper, {  }]}>
-                            <TouchableOpacity onPress={ () => this.setState({ modalVisible: !this.state.modalVisible }) }>
+                            <TouchableOpacity onPress={ () => this.props.navigation.navigate('Main') }>
                                 <Text style={{ fontSize: 20, textAlign: 'right' }}>Back</Text>
                             </TouchableOpacity> 
                         </View>                                               

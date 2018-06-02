@@ -10,8 +10,6 @@ import {
     Keyboard
 } from 'react-native';
 
-import LoginComponent from './Components/LoginComponent';
-
 import { login } from '../Authentication';
 
 export default class Login extends Component

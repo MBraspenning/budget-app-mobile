@@ -21,7 +21,7 @@ export const SignedIn = createDrawerNavigator({
     Main: {
         screen: Main,
         navigationOptions: {
-            drawerLabel: 'Main',
+            drawerLabel: 'Overview',
         }
     }, 
     AddItem: {
@@ -29,7 +29,7 @@ export const SignedIn = createDrawerNavigator({
         navigationOptions: {
             drawerLabel: 'Add Item'
         }
-    }
+    },
 });
 
 export const createRootNavigator = (loggedIn = false) => {
