@@ -13,12 +13,12 @@ export default class App extends React.Component {
         }
     }
     
-    componentWillMount() 
-    {
-        isLoggedIn()
-            .then(res => this.setState({ isLoggedIn: res}))
-            .catch(err => alert('An error occured.'));
-    }
+//    componentWillMount() 
+//    {
+//        isLoggedIn()
+//            .then(res => this.setState({ isLoggedIn: res}))
+//            .catch(err => alert('An error occured.'));
+//    }
         
     render() {
         const Layout = createRootNavigator(isLoggedIn);

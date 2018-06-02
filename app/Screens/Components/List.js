@@ -225,25 +225,26 @@ export default class List extends React.Component
 
 const styles = StyleSheet.create({
     incomeHeader: {
-        fontSize: 35,
+        fontSize: 25,
         color: '#28a745',
         marginVertical: 10,
         marginHorizontal: 20,
     },
     expenseHeader: {
-        fontSize: 35,
+        fontSize: 25,
         color: '#dc3545',
         marginVertical: 10,
         marginHorizontal: 20,
     },
     listItem: {
-        fontSize: 20,
+        fontSize: 17,
     },
     itemWrapper: {
         flexDirection: 'row',
         borderTopWidth: 1,
         borderTopColor: 'rgba(0,0,0,.125)',
-        padding: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 20,
     },
     modal: {
         backgroundColor: '#fff', 

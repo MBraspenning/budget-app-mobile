@@ -16,7 +16,6 @@ import {
 
 import Header from './Components/Header';
 import List from './Components/List';
-import LogoutComponent from './Components/LogoutComponent';
 
 export default class Main extends Component 
 {    
@@ -43,31 +42,25 @@ export default class Main extends Component
     render(){
         return (
             <View style={styles.container}>
-            <View style={{ flexDirection: 'row', flex: 2 }}>
-                <ImageBackground
-                    source={require('../../assets/background.jpg')}
-                    style={{ flex: 1, padding: 20 }}
-                >
-                    <Header 
-                        totalBudget={this.state.totalBudget}
-                        totalIncome={this.state.totalIncome}
-                        totalExpense={this.state.totalExpense}
-                    />
-                </ImageBackground>
-            </View>
-                        
-            <View style={{ flexDirection: 'row', flex: 3 }}>
-                <ScrollView style={{ flex: 1 }}>
-                    <List />
-                </ScrollView>
-            </View>
-            
-            <View style={{ flexDirection: 'row', flex: 0.5 }}>
-                <View style={{ flex: 1, alignItems: 'center' }}>                    
-                    <LogoutComponent navigation={this.props.navigation} />                
+                <View style={{ flexDirection: 'row', flex: 2 }}>
+                    <ImageBackground
+                        source={require('../../assets/background.jpg')}
+                        style={{ flex: 1, padding: 20 }}
+                    >
+                        <Header 
+                            totalBudget={this.state.totalBudget}
+                            totalIncome={this.state.totalIncome}
+                            totalExpense={this.state.totalExpense}
+                        />
+                    </ImageBackground>
+                </View>
+
+                <View style={{ flexDirection: 'row', flex: 3 }}>
+                    <ScrollView style={{ flex: 1 }}>
+                        <List />
+                    </ScrollView>
                 </View>
             </View>
-        </View>
         
         );   
     }
