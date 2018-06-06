@@ -28,12 +28,6 @@ export default class Main extends Component
         }
     }
     
-    _logoutAsync = async () => {
-        await AsyncStorage.clear();
-        
-        this.props.navigation.navigate('SignedOut');
-    }
-    
     render(){
         return (
             <View style={styles.container}>
@@ -47,7 +41,6 @@ export default class Main extends Component
                             totalIncome={this.state.totalIncome}
                             totalExpense={this.state.totalExpense}
                         />
-                        <Button title='Logout' onPress={this._logoutAsync}/>
                     </ImageBackground>
                 </View>
 

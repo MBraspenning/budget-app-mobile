@@ -7,7 +7,7 @@ import MainScreen from './Screens/MainScreen';
 import AddItemScreen from './Screens/AddItemScreen';
 import AuthLoadingScreen from './Screens/AuthLoadingScreen';
 
-import { FontAwesome, MaterialIcons } from 'react-native-vector-icons';
+import TabBarComponent from './Screens/Components/TabBarComponent';
 
 export const SignedOutStack = createStackNavigator({
    Login: {
@@ -36,14 +36,7 @@ export const SignedInStack = createBottomTabNavigator(
         },
     },
     {
-        tabBarOptions: {
-            labelStyle: {
-                fontSize: 14
-            }, 
-            style: {
-                height: 50
-            }
-        }
+        tabBarComponent: TabBarComponent,
     }
 );
 

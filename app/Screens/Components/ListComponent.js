@@ -13,7 +13,7 @@ import {
     TextInput
 } from 'react-native';
 
-export default class List extends React.Component
+export default class ListComponent extends React.Component
 {
     constructor(props) {
         super(props);

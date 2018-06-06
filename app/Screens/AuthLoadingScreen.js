@@ -13,7 +13,7 @@ export default class AuthLoadingScreen extends React.Component
     constructor(props)
     {
         super(props);
-        setTimeout(() => this._bootstrapAsync(), 2000);
+        this._bootstrapAsync();
     }
     
     _bootstrapAsync = async () => {
