@@ -66,15 +66,7 @@ export default class Login extends Component
                     <View style={styles.elementWrapper}>
                         <TouchableOpacity
                             onPress={this._loginAsync}
-                            style={
-                            { 
-                                borderWidth: 1, 
-                                borderColor: '#b8daff', 
-                                borderRadius: 5, 
-                                paddingVertical: 10, 
-                                paddingHorizontal: 20,
-                                backgroundColor: '#cce5ff'
-                            }}
+                            style={styles.loginButton}
                         >
                             <Text style={{ color: '#004085', fontSize: 25, }}>Login</Text>                    
                         </TouchableOpacity>
@@ -99,5 +91,13 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: 300,
+    },
+    loginButton: { 
+        borderWidth: 1, 
+        borderColor: '#b8daff', 
+        borderRadius: 5, 
+        paddingVertical: 10, 
+        paddingHorizontal: 20,
+        backgroundColor: '#cce5ff'
     }
 })
