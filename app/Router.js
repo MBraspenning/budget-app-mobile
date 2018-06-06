@@ -2,9 +2,9 @@ import React from 'react';
 
 import { createStackNavigator, createSwitchNavigator, createBottomTabNavigator } from 'react-navigation';
 
-import Login from './Screens/Login';
-import Main from './Screens/Main';
-import AddItem from './Screens/AddItem';
+import LoginScreen from './Screens/LoginScreen';
+import MainScreen from './Screens/MainScreen';
+import AddItemScreen from './Screens/AddItemScreen';
 
 import { FontAwesome, MaterialIcons } from 'react-native-vector-icons';
 
@@ -12,7 +12,7 @@ import { logout } from './Authentication';
 
 export const SignedOut = createStackNavigator({
    Login: {
-       screen: Login,
+       screen: LoginScreen,
        navigationOptions: {
            title: 'Login'
        }
@@ -22,26 +22,19 @@ export const SignedOut = createStackNavigator({
 export const SignedIn = createBottomTabNavigator(
     {
         Main: {
-            screen: Main,
+            screen: MainScreen,
             navigationOptions: {
                 tabBarLabel: 'Overview',
                 tabBarIcon: ({ tintColor }) => (<FontAwesome name="home" size={25} color={tintColor} />)
             }
         },
         Add: {
-            screen: AddItem,
+            screen: AddItemScreen,
             navigationOptions: {
                 tabBarLabel: 'Add Item',
                 tabBarIcon: ({ tintColor }) => (<MaterialIcons name="add-circle" size={25} color={tintColor} />)
             }
         },
-        Logout: {
-            screen: SignedOut,
-            navigationOptions: {
-                tabBarLabel: 'Logout',
-                tabBarIcon: ({ tintColor }) => (<MaterialIcons onPress={ () => logout() } name="exit-to-app" size={25} color={tintColor} />)
-            }
-        }
     },
     {
         tabBarOptions: {

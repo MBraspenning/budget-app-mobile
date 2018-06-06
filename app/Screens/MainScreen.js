@@ -14,8 +14,8 @@ import {
     Keyboard
 } from 'react-native';
 
-import Header from './Components/Header';
-import List from './Components/List';
+import HeaderComponent from './Components/HeaderComponent';
+import ListComponent from './Components/ListComponent';
 
 export default class Main extends Component 
 {    
@@ -47,7 +47,7 @@ export default class Main extends Component
                         source={require('../../assets/background.jpg')}
                         style={{ flex: 1, padding: 20 }}
                     >
-                        <Header 
+                        <HeaderComponent 
                             totalBudget={this.state.totalBudget}
                             totalIncome={this.state.totalIncome}
                             totalExpense={this.state.totalExpense}
@@ -57,7 +57,7 @@ export default class Main extends Component
 
                 <View style={{ flexDirection: 'row', flex: 3 }}>
                     <ScrollView style={{ flex: 1 }}>
-                        <List />
+                        <ListComponent />
                     </ScrollView>
                 </View>
             </View>
