@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 
 import { 
     StyleSheet, 
-    Text, 
     View, 
     ScrollView, 
     ImageBackground,
-    Modal,
-    TouchableOpacity,
-    TextInput,
-    Alert,
-    TouchableWithoutFeedback,
-    Keyboard
+    Button,
+    AsyncStorage
 } from 'react-native';
 
 import HeaderComponent from './Components/HeaderComponent';
@@ -33,10 +28,10 @@ export default class Main extends Component
         }
     }
     
-    submit = () => {        
-        this.setState({ modalVisible: !this.state.modalVisible })
+    _logoutAsync = async () => {
+        await AsyncStorage.clear();
         
-        console.log(this.state.type + ' ' + this.state.description + ' ' + this.state.amount);
+        this.props.navigation.navigate('SignedOut');
     }
     
     render(){
@@ -52,6 +47,7 @@ export default class Main extends Component
                             totalIncome={this.state.totalIncome}
                             totalExpense={this.state.totalExpense}
                         />
+                        <Button title='Logout' onPress={this._logoutAsync}/>
                     </ImageBackground>
                 </View>
 
@@ -73,52 +69,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    modal: {
-        backgroundColor: '#fff', 
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    inputWrapper: {
-        marginTop: 30,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    textInputWrapper: {
-        marginHorizontal: 40,
-    },
-    input: {
-        fontSize: 25,    
-    },
-    elementWrapper: {
-        marginVertical: 20,    
-    },
-    submit: {
-        borderWidth: 1,
-        borderRadius: 5,
-        borderColor: '#155724',
-        backgroundColor: '#c3e6cb',
-        padding: 10,
-    },
-    submitText: {
-        color: '#155724',
-    },
-    switchButtonInc: {
-        borderWidth: 1,
-        borderColor: 'rgba(0,0,0,.125)',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 5,
-        borderTopLeftRadius: 5,
-        width: 150,
-    },
-    switchButtonExp: {
-        borderWidth: 1,
-        borderColor: 'rgba(0,0,0,.125)',
-        padding: 10,
-        paddingHorizontal: 20,
-        borderBottomRightRadius: 5,
-        borderTopRightRadius: 5,
-        width: 150,
-    }
 });

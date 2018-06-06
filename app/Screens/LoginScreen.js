@@ -7,7 +7,8 @@ import {
     StyleSheet,
     TextInput,
     TouchableWithoutFeedback,
-    Keyboard
+    Keyboard,
+    AsyncStorage
 } from 'react-native';
 
 import { login } from '../Authentication';
@@ -23,6 +24,12 @@ export default class Login extends Component
                 password: '',
             }
         }
+    }
+    
+    _loginAsync = async () => {
+        await AsyncStorage.setItem('userToken', 'test');
+        
+        this.props.navigation.navigate('SignedIn');
     }
     
     render(){
@@ -76,7 +83,7 @@ export default class Login extends Component
 
                     <View style={styles.elementWrapper}>
                         <TouchableOpacity
-                            onPress={() => login(this.state.Claims).then(() => navigate('SignedIn'))}
+                            onPress={this._loginAsync}
                             style={
                             { 
                                 borderWidth: 1, 

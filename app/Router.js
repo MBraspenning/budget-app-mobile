@@ -5,12 +5,11 @@ import { createStackNavigator, createSwitchNavigator, createBottomTabNavigator }
 import LoginScreen from './Screens/LoginScreen';
 import MainScreen from './Screens/MainScreen';
 import AddItemScreen from './Screens/AddItemScreen';
+import AuthLoadingScreen from './Screens/AuthLoadingScreen';
 
 import { FontAwesome, MaterialIcons } from 'react-native-vector-icons';
 
-import { logout } from './Authentication';
-
-export const SignedOut = createStackNavigator({
+export const SignedOutStack = createStackNavigator({
    Login: {
        screen: LoginScreen,
        navigationOptions: {
@@ -19,7 +18,7 @@ export const SignedOut = createStackNavigator({
    }     
 }); 
 
-export const SignedIn = createBottomTabNavigator(
+export const SignedInStack = createBottomTabNavigator(
     {
         Main: {
             screen: MainScreen,
@@ -48,18 +47,15 @@ export const SignedIn = createBottomTabNavigator(
     }
 );
 
-export const createRootNavigator = (isLoggedIn = false) => {
+export const createRootNavigator = () => {
     return createSwitchNavigator(
         {
-            SignedIn: {
-                screen: SignedIn
-            },
-            SignedOut: {
-                screen: SignedOut
-            }
+            AuthLoading: AuthLoadingScreen,
+            SignedIn: SignedInStack,
+            SignedOut: SignedOutStack,
         },
         {
-            initialRouteName: isLoggedIn == true ? "SignedIn" : "SignedOut"
+            initialRouteName: 'AuthLoading',
         }
     )
 }
