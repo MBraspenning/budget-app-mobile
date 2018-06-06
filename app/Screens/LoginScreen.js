@@ -38,16 +38,7 @@ export default class Login extends Component
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={[styles.elementWrapper, 
-                        { 
-                            borderWidth: 1, 
-                            borderColor: 'rgba(0,0,0,.125)', 
-                            borderRadius: 5,
-                            paddingVertical: 10,
-                            paddingHorizontal: 20,
-                            width: 300,
-                        }
-                    ]}>
+                    <View style={[styles.elementWrapper, styles.loginInputField]}>
                         <TextInput 
                             placeholder='Email'
                             onChangeText={ (email) => {
@@ -59,16 +50,7 @@ export default class Login extends Component
                         />
                     </View>
 
-                    <View style={[styles.elementWrapper, 
-                                  { 
-                                    borderWidth: 1, 
-                                    borderColor: 'rgba(0,0,0,.125)', 
-                                    borderRadius: 5,
-                                    paddingVertical: 10,
-                                    paddingHorizontal: 20,
-                                    width: 300,
-                                  }
-                                 ]}>
+                    <View style={[styles.elementWrapper, styles.loginInputField]}>
                         <TextInput 
                             placeholder='Password'
                             secureTextEntry={true}
@@ -109,5 +91,13 @@ const styles = StyleSheet.create({
     },
     input: {
         fontSize: 15,    
-    },    
+    }, 
+    loginInputField: { 
+        borderWidth: 1, 
+        borderColor: 'rgba(0,0,0,.125)', 
+        borderRadius: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        width: 300,
+    }
 })
