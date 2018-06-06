@@ -14,6 +14,14 @@ import { FontAwesome, MaterialIcons } from 'react-native-vector-icons';
 
 export default class TabBarComponent extends React.Component
 {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            active: 'overview',
+        }
+    }
+    
     _logoutAsync = async () => {
         await AsyncStorage.clear();
         
@@ -26,26 +34,32 @@ export default class TabBarComponent extends React.Component
         return (
             <View style={styles.tabBarContainer}>
                 <View style={[styles.tabBarItemContainer, {alignItems: 'flex-start'}]}>
-                    <TouchableOpacity onPress={() => navigate('Main')} >
+                    <TouchableOpacity onPress={() => {
+                            this.setState({active: 'overview'});
+                            navigate('Main');
+                    }} >
                         <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                            <FontAwesome name="home" size={25} />
-                            <Text>Overview</Text>
+                            <FontAwesome name="home" size={25} style={this.state.active == 'overview' ? styles.active : styles.inactive} />
+                            <Text style={this.state.active == 'overview' ? styles.active : styles.inactive}>Overview</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={[styles.tabBarItemContainer, {alignItems: 'center'}]}>
-                    <TouchableOpacity onPress={() => navigate('Add')} >
+                    <TouchableOpacity onPress={() => {
+                            this.setState({active: 'add'});
+                            navigate('Add');
+                    }} >
                         <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                            <MaterialIcons name="add-circle" size={25} />
-                            <Text>Add Item</Text>
+                            <MaterialIcons name="add-circle" size={25} style={this.state.active == 'add' ? styles.active : styles.inactive} />
+                            <Text style={this.state.active == 'add' ? styles.active : styles.inactive}>Add Item</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={[styles.tabBarItemContainer,, {alignItems: 'flex-end'}]}>
                     <TouchableOpacity onPress={this._logoutAsync} >
                         <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                            <MaterialIcons name="exit-to-app" size={25} />
-                            <Text>Logout</Text>
+                            <MaterialIcons name="exit-to-app" size={25} style={styles.inactive} />
+                            <Text style={styles.inactive} >Logout</Text>
                         </View>
                     </TouchableOpacity> 
                 </View>              
@@ -63,5 +77,11 @@ const styles = StyleSheet.create({
     },
     tabBarItemContainer: {
         flex: 1,
+    },
+    active: {
+        color: '#327AD1'
+    },
+    inactive: {
+        color: '#93A6B7'
     }
 });
