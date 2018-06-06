@@ -13,7 +13,7 @@ export default class App extends React.Component {
         }
     }
     
-//    componentWillMount() 
+//    componentDidMount() 
 //    {
 //        isLoggedIn()
 //            .then(res => this.setState({ isLoggedIn: res}))

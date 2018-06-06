@@ -8,7 +8,11 @@ export const login = (claims) => {
     return AsyncStorage.setItem(USER_KEY, 'true');
 }
 
-export const logout = () => AsyncStorage.removeItem(USER_KEY);
+export const logout = () => {
+    console.log('logout');
+    
+    return AsyncStorage.removeItem(USER_KEY);
+}
 
 export const isLoggedIn = () => {
     return new Promise((resolve, reject) => {

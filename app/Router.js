@@ -8,6 +8,8 @@ import AddItem from './Screens/AddItem';
 
 import { FontAwesome, MaterialIcons } from 'react-native-vector-icons';
 
+import { logout } from './Authentication';
+
 export const SignedOut = createStackNavigator({
    Login: {
        screen: Login,
@@ -37,7 +39,7 @@ export const SignedIn = createBottomTabNavigator(
             screen: SignedOut,
             navigationOptions: {
                 tabBarLabel: 'Logout',
-                tabBarIcon: ({ tintColor }) => (<MaterialIcons name="exit-to-app" size={25} color={tintColor} />)
+                tabBarIcon: ({ tintColor }) => (<MaterialIcons onPress={ () => logout() } name="exit-to-app" size={25} color={tintColor} />)
             }
         }
     },
@@ -53,7 +55,7 @@ export const SignedIn = createBottomTabNavigator(
     }
 );
 
-export const createRootNavigator = (loggedIn = false) => {
+export const createRootNavigator = (isLoggedIn = false) => {
     return createSwitchNavigator(
         {
             SignedIn: {
@@ -64,7 +66,7 @@ export const createRootNavigator = (loggedIn = false) => {
             }
         },
         {
-            initialRouteName: loggedIn ? "SignedIn" : "SignedOut"
+            initialRouteName: isLoggedIn == true ? "SignedIn" : "SignedOut"
         }
     )
 }
