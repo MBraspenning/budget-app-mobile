@@ -11,8 +11,6 @@ import {
     AsyncStorage
 } from 'react-native';
 
-import { login } from '../Authentication';
-
 export default class Login extends Component
 {
     constructor(props)
@@ -22,11 +20,18 @@ export default class Login extends Component
             Claims: {
                 email: '',
                 password: '',
-            }
+            },
+            InputError: '',            
         }
     }
     
-    _loginAsync = async () => {
+    _loginAsync = async (claims) => {
+        if (claims.email === '' || claims.password === '') 
+        {
+            this.setState({InputError: 'Please fill in your email and password.'});            
+            return;
+        }
+        
         await AsyncStorage.setItem('userToken', 'test');
         
         this.props.navigation.navigate('SignedIn');
@@ -37,10 +42,21 @@ export default class Login extends Component
         
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
+                    
+                    {
+                        this.state.InputError !== ''
+                        ? 
+                            <View style={[styles.elementWrapper, styles.errorMessage]}>
+                                <Text style={styles.errorText}>{this.state.InputError}</Text>
+                            </View>
+                        : null
+                    }
+                    
                     <View style={[styles.elementWrapper, styles.loginInputField]}>
                         <TextInput 
                             placeholder='Email'
+                            autoCapitalize='none'
                             onChangeText={ (email) => {
                                 const newClaims = Object.assign({}, this.state.Claims, { email: email });
                                 this.setState({Claims: newClaims});   
@@ -65,7 +81,7 @@ export default class Login extends Component
 
                     <View style={styles.elementWrapper}>
                         <TouchableOpacity
-                            onPress={this._loginAsync}
+                            onPress={() => this._loginAsync(this.state.Claims)}
                             style={styles.loginButton}
                         >
                             <Text style={{ color: '#004085', fontSize: 25, }}>Login</Text>                    
@@ -99,5 +115,17 @@ const styles = StyleSheet.create({
         paddingVertical: 10, 
         paddingHorizontal: 20,
         backgroundColor: '#cce5ff'
+    },
+    errorMessage: {
+        backgroundColor: '#f8d7da',
+        borderWidth: 1,
+        borderColor: '#f5c6cb',
+        borderRadius: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        width: 300,
+    },
+    errorText: {
+        color: '#721c24',        
     }
 })

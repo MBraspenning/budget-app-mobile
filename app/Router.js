@@ -13,7 +13,7 @@ export const SignedOutStack = createStackNavigator({
    Login: {
        screen: LoginScreen,
        navigationOptions: {
-           title: 'Login'
+           title: 'Login',
        }
    }     
 }); 
