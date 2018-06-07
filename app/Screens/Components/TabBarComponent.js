@@ -19,7 +19,7 @@ export default class TabBarComponent extends React.Component
         super(props);
         this.state = {
             active: 'overview',
-        }
+        }        
     }
     
     _logoutAsync = async () => {
@@ -27,7 +27,7 @@ export default class TabBarComponent extends React.Component
         
         this.props.navigation.navigate('SignedOut');
     }
-    
+
     render() {
         const { navigate } = this.props.navigation;
         
@@ -46,20 +46,20 @@ export default class TabBarComponent extends React.Component
                 </View>
                 <View style={[styles.tabBarItemContainer, {alignItems: 'center'}]}>
                     <TouchableOpacity onPress={() => {
-                            this.setState({active: 'add'});
+                            this.setState({active: 'overview'});
                             navigate('Add');
                     }} >
                         <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                            <MaterialIcons name="add-circle" size={25} style={this.state.active == 'add' ? styles.active : styles.inactive} />
-                            <Text style={this.state.active == 'add' ? styles.active : styles.inactive}>Add Item</Text>
+                            <MaterialIcons name="add-circle" size={25} style={this.state.active == 'overview' ? styles.active : styles.inactive} />
+                            <Text style={this.state.active == 'overview' ? styles.active : styles.inactive}>Add Item</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={[styles.tabBarItemContainer,, {alignItems: 'flex-end'}]}>
                     <TouchableOpacity onPress={this._logoutAsync} >
                         <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                            <MaterialIcons name="exit-to-app" size={25} style={styles.inactive} />
-                            <Text style={styles.inactive} >Logout</Text>
+                            <MaterialIcons name="exit-to-app" size={25} style={styles.active} />
+                            <Text style={styles.active} >Logout</Text>
                         </View>
                     </TouchableOpacity> 
                 </View>              
