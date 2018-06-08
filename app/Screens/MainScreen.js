@@ -6,11 +6,13 @@ import {
     ScrollView, 
     ImageBackground,
     Button,
-    AsyncStorage
+    AsyncStorage,
 } from 'react-native';
 
 import HeaderComponent from './Components/HeaderComponent';
 import ListComponent from './Components/ListComponent';
+
+import Api from '../Api';
 
 export default class Main extends Component 
 {    
@@ -24,8 +26,16 @@ export default class Main extends Component
             modalVisible: false,
             description: '', 
             amount: 0,
-            type: 'income'
-        }
+            type: 'income',
+            apiData: {},
+        }             
+    }
+    
+    componentDidMount() {
+        let test = Api.fetchAll()
+            .then((data) => {                                
+                this.setState({apiData: data})                
+            });        
     }
     
     render(){
