@@ -32,7 +32,7 @@ export default class Main extends Component
     }
     
     componentDidMount() {
-        let test = Api.fetchAll()
+        Api.fetchAll()
             .then((data) => {                                
                 this.setState({apiData: data})                
             });        
