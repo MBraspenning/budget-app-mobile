@@ -19,15 +19,6 @@ export default class ListComponent extends React.Component
         super(props);
         
         this.state = { 
-            incomeItems: [
-                {id: '0', description: 'Salary', amount: '50.00'}, 
-                {id: '1', description: 'Project', amount: '50.00'},
-                {id: '2', description: 'Project', amount: '50.00'},
-                {id: '3', description: 'Project', amount: '50.00'},
-            ], 
-            expenseItems: [
-                {id: '0', description: 'Huur', amount: '50.00'}
-            ],
             modalVisible: false,
             itemToEditType: '',
             itemToEditId: '',
@@ -62,14 +53,14 @@ export default class ListComponent extends React.Component
                 <View>
                     <Text style={styles.incomeHeader}>Income</Text>
                     <FlatList 
-                        data={this.state.incomeItems}
+                        data={this.props.incomeItems}
                         keyExtractor={(item, index) => item.id}
                         renderItem={
                             ({item}) => 
                                 <View style={styles.itemWrapper}>
                                     <View style={{ flex: 1 }}>
                                         <Text style={[styles.listItem, { textAlign: 'left' }]}>
-                                            {item.description}
+                                            {item.income}
                                         </Text>
                                     </View>
                                     <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -79,7 +70,7 @@ export default class ListComponent extends React.Component
                                             </Text>
                                         </View>
                                         <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                            <TouchableOpacity onPress={ () => this.showEditForm('income', item.id, item.description, item.amount) }
+                                            <TouchableOpacity onPress={ () => this.showEditForm('income', item.id, item.income, item.amount) }
                                                style={{ marginLeft: 15 }}>
                                                 <Image source={require('../../../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>
@@ -95,14 +86,14 @@ export default class ListComponent extends React.Component
                 <View>
                     <Text style={styles.expenseHeader}>Expense</Text> 
                     <FlatList 
-                        data={this.state.expenseItems}
+                        data={this.props.expenseItems}
                         keyExtractor={(item, index) => item.id}
                         renderItem={
                             ({item}) => 
                                 <View style={styles.itemWrapper}>
                                     <View style={{ flex: 1 }}>
                                         <Text style={[styles.listItem, { textAlign: 'left' }]}>
-                                            {item.description}
+                                            {item.expense}
                                         </Text>
                                     </View>
                                     <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -112,7 +103,7 @@ export default class ListComponent extends React.Component
                                             </Text>
                                         </View>
                                         <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                            <TouchableOpacity onPress={ () => this.showEditForm('expense', item.id, item.description, item.amount) }
+                                            <TouchableOpacity onPress={ () => this.showEditForm('expense', item.id, item.expense, item.amount) }
                                                style={{ marginLeft: 15 }}>
                                                 <Image source={require('../../../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>

@@ -23,10 +23,6 @@ export default class Main extends Component
             totalBudget: '0.00',
             totalIncome: '0.00',
             totalExpense: '0.00',
-            modalVisible: false,
-            description: '', 
-            amount: 0,
-            type: 'income',
             data: [],
         }             
     }
@@ -61,7 +57,10 @@ export default class Main extends Component
 
                 <View style={{ flexDirection: 'row', flex: 3 }}>
                     <ScrollView style={{ flex: 1 }}>
-                        <ListComponent />
+                        <ListComponent 
+                            incomeItems={this.state.data[1]} 
+                            expenseItems={this.state.data[2]}
+                        />
                     </ScrollView>
                 </View>
             </View>
