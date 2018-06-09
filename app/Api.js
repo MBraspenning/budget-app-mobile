@@ -15,8 +15,8 @@ export default class Api
             let data = await response.json();             
             
             let budget = JSON.parse(data[0]);
-            let income = JSON.parse(data[1]);
-            let expense = JSON.parse(data[2]);
+            let income = JSON.parse(data[1]).reverse();
+            let expense = JSON.parse(data[2]).reverse();
             
             let dataToReturn = [budget, income, expense];            
             

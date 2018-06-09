@@ -39,18 +39,20 @@ export default class Main extends Component
             });        
     }
     
-    componentDidUpdate() {
-        Api.fetchAll()
-            .then((data) => {                                
-                this.setState({
-                    data: data, 
-                    totalBudget: data[0][0].total_budget,
-                    totalIncome: data[0][0].total_income,
-                    totalExpense: data[0][0].total_expense,
-                })                
-            });
-    }
-    
+//    if (this.props.navigation.getParam('itemAdded', false)) 
+//    {
+//        Api.fetchAll()
+//        .then((data) => {                                
+//            this.setState({
+//                data: data, 
+//                totalBudget: data[0][0].total_budget,
+//                totalIncome: data[0][0].total_income,
+//                totalExpense: data[0][0].total_expense,
+//            })  
+//            console.log('component update called');
+//        });   
+//    }
+
     render(){
         return (
             <View style={styles.container}>
