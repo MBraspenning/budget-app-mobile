@@ -16,19 +16,23 @@ export default class Api
             
             let budget = JSON.parse(data[0]);
             let income = JSON.parse(data[1]);
-            let expense = JSON.parse(data[2]);                    
+            let expense = JSON.parse(data[2]);
             
-            console.log('---');
-            console.log(budget);
-            console.log('---');
-            console.log('---');
-            console.log(income);
-            console.log('---');
-            console.log('---');
-            console.log(expense);
-            console.log('---');
+            let dataToReturn = [budget, income, expense];
             
-            return data;
+//            console.log('---');
+//            console.log(budget);
+//            console.log('---');
+//            console.log('---');
+//            console.log(income);
+//            console.log('---');
+//            console.log('---');
+//            console.log(expense);
+//            console.log('---');
+            
+            console.log(dataToReturn);
+            
+            return dataToReturn;
         }
         catch (error) {
             console.log(error);

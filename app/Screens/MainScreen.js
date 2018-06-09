@@ -7,6 +7,7 @@ import {
     ImageBackground,
     Button,
     AsyncStorage,
+    Text,
 } from 'react-native';
 
 import HeaderComponent from './Components/HeaderComponent';
@@ -20,21 +21,26 @@ export default class Main extends Component
     {
         super(props);
         this.state = { 
-            totalBudget: 50.00,
-            totalIncome: 100.00,
-            totalExpense: 50.00,
+            totalBudget: '0.00',
+            totalIncome: '0.00',
+            totalExpense: '0.00',
             modalVisible: false,
             description: '', 
             amount: 0,
             type: 'income',
-            apiData: {},
+            data: [],
         }             
     }
     
     componentDidMount() {
         Api.fetchAll()
             .then((data) => {                                
-                this.setState({apiData: data})                
+                this.setState({
+                    data: data, 
+                    totalBudget: data[0][0].total_budget,
+                    totalIncome: data[0][0].total_income,
+                    totalExpense: data[0][0].total_expense,
+                })                
             });        
     }
     
