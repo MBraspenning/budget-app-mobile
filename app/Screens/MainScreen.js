@@ -7,7 +7,6 @@ import {
     ImageBackground,
     Button,
     AsyncStorage,
-    Text,
 } from 'react-native';
 
 import HeaderComponent from './Components/HeaderComponent';
