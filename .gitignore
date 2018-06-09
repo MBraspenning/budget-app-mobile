@@ -2,3 +2,4 @@ node_modules/**/*
 .expo/*
 npm-debug.*
 assets/.DS_Store
+app/Config.js

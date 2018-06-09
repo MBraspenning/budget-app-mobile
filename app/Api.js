@@ -1,11 +1,11 @@
-const baseUrl = '';
+import { BaseUrl } from './Config';
 
 export default class Api 
 {
     static async fetchAll() 
     {
         try {
-            let response = await fetch('https://jsonplaceholder.typicode.com/users', {
+            let response = await fetch(BaseUrl + '/api/fetch?user_id=1', {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
@@ -14,9 +14,9 @@ export default class Api
             
             let data = await response.json();
             
-            console.log(data[0]);
+            console.log(data);
             
-            return data[0];
+            return data;
         }
         catch (error) {
             console.log(error);
