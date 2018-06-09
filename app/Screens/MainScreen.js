@@ -39,6 +39,18 @@ export default class Main extends Component
             });        
     }
     
+    componentDidUpdate() {
+        Api.fetchAll()
+            .then((data) => {                                
+                this.setState({
+                    data: data, 
+                    totalBudget: data[0][0].total_budget,
+                    totalIncome: data[0][0].total_income,
+                    totalExpense: data[0][0].total_expense,
+                })                
+            });
+    }
+    
     render(){
         return (
             <View style={styles.container}>

@@ -10,6 +10,8 @@ import {
     StyleSheet
 } from 'react-native';
 
+import Api from '../Api';
+
 export default class AddItem extends Component 
 {
     constructor(props)
@@ -22,9 +24,9 @@ export default class AddItem extends Component
         }
     }
     
-    submit = () => {                
-        console.log(this.state.type + ' ' + this.state.description + ' ' + this.state.amount);
-        this.props.navigation.navigate('Main');
+    submit = async () => {                        
+        await Api.postNewItem(this.state.type, this.state.description, this.state.amount)
+            .then(this.props.navigation.navigate('Main'));                
     }
     
     render() {

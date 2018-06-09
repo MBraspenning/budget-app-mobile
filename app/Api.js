@@ -27,19 +27,24 @@ export default class Api
         }
     }        
     
-    static async postNewItem()
+    static async postNewItem(type, description, amount)
     {
         try {
-            let response = await fetch(baseUrl, {
+            let response = await fetch(BaseUrl + '/api/insert', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    
+                    user_id: '1',
+                    type: type,
+                    description: description,
+                    amount: amount
                 }),
             });
+            
+            return;
         }
         catch (error) {
             console.log(error);
