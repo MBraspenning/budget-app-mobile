@@ -21,9 +21,7 @@ export default class AddItem extends Component
             description: '', 
             amount: 0,
             type: 'income'
-        }
-        
-        this.refreshList = this.refreshList.bind(this);
+        }        
     }
     
     submit = async () => {                        
