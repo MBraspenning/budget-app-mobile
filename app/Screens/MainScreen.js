@@ -36,12 +36,12 @@ export default class Main extends Component
                     totalIncome: data[0][0].total_income,
                     totalExpense: data[0][0].total_expense,
                 })                
-            });        
-    }        
+            }); 
+        
+        console.log('test');
+    } 
 
     render(){
-        this.componentDidMount();
-
         return (
             <View style={styles.container}>
                 <View style={{ flexDirection: 'row', flex: 2 }}>
