@@ -24,9 +24,9 @@ export default class Main extends Component
             totalIncome: '0.00',
             totalExpense: '0.00',
             data: [],
-            dataAdded: false,
         }
-        
+
+        this.props.navigation.setParams({dataChanged: false});
     }
     
     componentDidMount() 
@@ -57,7 +57,7 @@ export default class Main extends Component
                 })                
             });
         
-        console.log('-- update --');
+        console.log('--- update ---');
     }
 
     render(){         
