@@ -76,7 +76,7 @@ export default class Api
         }
     }
     
-    static async deleteItem(id)
+    static async deleteItem(id, type, amount)
     {
         try {
             let response = await fetch(BaseUrl + '/api/delete', {
@@ -86,7 +86,10 @@ export default class Api
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    id: id
+                    id: id,
+                    type: type,
+                    amount: amount,
+                    user_id: '1'
                 }),
             });
             

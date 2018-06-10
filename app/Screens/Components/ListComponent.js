@@ -50,6 +50,10 @@ export default class ListComponent extends React.Component
         ).then(this.setState({ modalVisible: !this.state.modalVisible }));                                        
     }
     
+    deleteItem = async (id, type, amount) => {
+        await Api.deleteItem(id, type, amount);
+    }
+    
     render() {
         return (
             <View>
@@ -79,7 +83,7 @@ export default class ListComponent extends React.Component
                                                style={{ marginLeft: 15 }}>
                                                 <Image source={require('../../../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => Alert.alert('delete button clicked!') }>
+                                            <TouchableOpacity onPress={() => this.deleteItem(item.id, 'income', item.amount)}>
                                                 <Image source={require('../../../assets/garbage.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>                                            
                                         </View>
@@ -112,7 +116,7 @@ export default class ListComponent extends React.Component
                                                style={{ marginLeft: 15 }}>
                                                 <Image source={require('../../../assets/edit.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => Alert.alert('delete button clicked!') }>
+                                            <TouchableOpacity onPress={ () => this.deleteItem(item.id, 'expense', item.amount) }>
                                                 <Image source={require('../../../assets/garbage.png')} style={{ width: 20, height: 20 }}/>
                                             </TouchableOpacity>                                            
                                         </View>
