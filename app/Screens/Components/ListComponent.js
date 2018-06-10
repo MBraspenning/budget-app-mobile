@@ -47,11 +47,14 @@ export default class ListComponent extends React.Component
             this.state.itemToEditType,
             this.state.itemToEditDescription, 
             this.state.itemToEditAmount
-        ).then(this.setState({ modalVisible: !this.state.modalVisible }));                                        
+        )
+        .then(this.setState({ modalVisible: !this.state.modalVisible }))
+        .then(this.props.navigation.setParams({dataChanged: true}));                                        
     }
     
     deleteItem = async (id, type, amount) => {
-        await Api.deleteItem(id, type, amount);
+        await Api.deleteItem(id, type, amount)
+            .then(this.props.navigation.setParams({dataChanged: true}));
     }
     
     render() {

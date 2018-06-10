@@ -36,10 +36,10 @@ export default class Main extends Component
     
     componentDidUpdate()
     {
-        if (this.props.navigation.getParam('itemAdded'))
+        if (this.props.navigation.getParam('dataChanged'))
         {
             this._fetchFromServer();
-            this.props.navigation.setParams({itemAdded: false});
+            this.props.navigation.setParams({dataChanged: false});
         }
         
         
@@ -71,7 +71,7 @@ export default class Main extends Component
                         <HeaderComponent 
                             totalBudget={this.state.totalBudget}
                             totalIncome={this.state.totalIncome}
-                            totalExpense={this.state.totalExpense}
+                            totalExpense={this.state.totalExpense}                            
                         />
                     </ImageBackground>
                 </View>
@@ -81,6 +81,7 @@ export default class Main extends Component
                         <ListComponent 
                             incomeItems={this.state.data[1]} 
                             expenseItems={this.state.data[2]}
+                            navigation={this.props.navigation}
                         />
                     </ScrollView>
                 </View>
