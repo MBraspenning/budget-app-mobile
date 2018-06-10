@@ -24,7 +24,7 @@ export default class AddItem extends Component
         }        
     }
     
-    submit = async () => {                        
+    submit = async () => { 
         await Api.postNewItem(this.state.type, this.state.description, this.state.amount)
             .then(this.props.navigation.navigate('Main'));                
     }
@@ -36,9 +36,8 @@ export default class AddItem extends Component
                     <View style={[styles.inputWrapper, {flex: 1}]}>
 
                         <View style={[styles.elementWrapper, { flexDirection: 'row' }]}>
-                            <TouchableOpacity onPress={ () => 
-                        this.setState({type: 'income'})
-                                                      }
+                            <TouchableOpacity 
+                                onPress={ () => this.setState({type: 'income'})}
                                 style={[styles.switchButtonInc, 
                                         this.state.type == 'income' 
                                         ? { backgroundColor: '#c3e6cb' }
@@ -47,9 +46,8 @@ export default class AddItem extends Component
                                 >
                                 <Text style={[styles.input, { color: '#155724', textAlign: 'center' }]}>Income</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={ () => 
-                        this.setState({type: 'expense'})
-                                                      } 
+                            <TouchableOpacity 
+                                onPress={ () => this.setState({type: 'expense'})} 
                                 style={[styles.switchButtonExp, 
                                         this.state.type == 'expense' 
                                         ? { backgroundColor: '#f5c6cb' }

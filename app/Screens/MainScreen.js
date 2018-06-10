@@ -28,17 +28,18 @@ export default class Main extends Component
     }
     
     componentDidMount() {
-        Api.fetchAll()
-            .then((data) => {                                
-                this.setState({
-                    data: data, 
-                    totalBudget: data[0][0].total_budget,
-                    totalIncome: data[0][0].total_income,
-                    totalExpense: data[0][0].total_expense,
-                })                
-            }); 
-        
-        console.log('test');
+//        this.props.navigation.addListener('didFocus', async () => {
+            Api.fetchAll()
+                .then((data) => {                                
+                    this.setState({
+                        data: data, 
+                        totalBudget: data[0][0].total_budget,
+                        totalIncome: data[0][0].total_income,
+                        totalExpense: data[0][0].total_expense,
+                    })                
+                });
+//            console.log('update!');
+//        });
     }         
 
     render(){         
