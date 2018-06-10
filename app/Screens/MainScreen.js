@@ -27,7 +27,7 @@ export default class Main extends Component
         }
     }
     
-    componentWillMount() {
+    componentDidMount() {
         Api.fetchAll()
             .then((data) => {                                
                 this.setState({
