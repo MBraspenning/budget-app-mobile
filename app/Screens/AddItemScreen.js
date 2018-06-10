@@ -26,7 +26,7 @@ export default class AddItem extends Component
     
     submit = async () => { 
         await Api.postNewItem(this.state.type, this.state.description, this.state.amount)
-            .then(this.props.navigation.navigate('Main'));                
+            .then(this.props.navigation.navigate('Main', {itemAdded: true}));                
     }
     
     render() {

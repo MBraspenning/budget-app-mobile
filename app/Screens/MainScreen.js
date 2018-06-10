@@ -24,23 +24,41 @@ export default class Main extends Component
             totalIncome: '0.00',
             totalExpense: '0.00',
             data: [],
+            dataAdded: false,
         }
+        
     }
     
-    componentDidMount() {
-//        this.props.navigation.addListener('didFocus', async () => {
-            Api.fetchAll()
-                .then((data) => {                                
-                    this.setState({
-                        data: data, 
-                        totalBudget: data[0][0].total_budget,
-                        totalIncome: data[0][0].total_income,
-                        totalExpense: data[0][0].total_expense,
-                    })                
-                });
-//            console.log('update!');
-//        });
-    }         
+    componentDidMount() 
+    {
+        this._fetchFromServer();
+    }
+    
+    componentDidUpdate()
+    {
+        if (this.props.navigation.getParam('itemAdded'))
+        {
+            this._fetchFromServer();
+            this.props.navigation.setParams({itemAdded: false});
+        }
+        
+        
+    }
+    
+    _fetchFromServer() 
+    {
+        Api.fetchAll()
+            .then((data) => {                                
+                this.setState({
+                    data: data, 
+                    totalBudget: data[0][0].total_budget,
+                    totalIncome: data[0][0].total_income,
+                    totalExpense: data[0][0].total_expense,
+                })                
+            });
+        
+        console.log('-- update --');
+    }
 
     render(){         
         return (
