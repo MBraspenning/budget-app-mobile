@@ -22,11 +22,17 @@ export default class AddItem extends Component
             amount: 0,
             type: 'income'
         }
+        
+        this.refreshList = this.refreshList.bind(this);
     }
     
     submit = async () => {                        
         await Api.postNewItem(this.state.type, this.state.description, this.state.amount)
-            .then(this.props.navigation.navigate('Main'));                
+            .then(this.props.navigation.navigate('Main', {test: this.refreshList}));                
+    }
+    
+    refreshList = () => {
+        console.log('hello world!');
     }
     
     render() {

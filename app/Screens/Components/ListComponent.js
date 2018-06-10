@@ -13,6 +13,8 @@ import {
     TextInput
 } from 'react-native';
 
+import Api from '../../Api';
+
 export default class ListComponent extends React.Component
 {
     constructor(props) {
@@ -39,10 +41,13 @@ export default class ListComponent extends React.Component
         this.setState({ modalVisible: !this.state.modalVisible });
     }
 
-    submit = () => {        
-        this.setState({ modalVisible: !this.state.modalVisible })
-        
-        console.log(this.state.itemToEditType + ' ' + this.state.itemToEditDescription + ' ' + this.state.itemToEditAmount);
+    submit = async () => {        
+        await Api.editItem(
+            this.state.itemToEditId, 
+            this.state.itemToEditType,
+            this.state.itemToEditDescription, 
+            this.state.itemToEditAmount
+        ).then(this.setState({ modalVisible: !this.state.modalVisible }));                                        
     }
     
     render() {

@@ -24,7 +24,7 @@ export default class Main extends Component
             totalIncome: '0.00',
             totalExpense: '0.00',
             data: [],
-        }             
+        }
     }
     
     componentDidMount() {
@@ -39,9 +39,9 @@ export default class Main extends Component
             }); 
         
         console.log('test');
-    } 
+    }         
 
-    render(){
+    render(){         
         return (
             <View style={styles.container}>
                 <View style={{ flexDirection: 'row', flex: 2 }}>

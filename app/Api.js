@@ -50,4 +50,31 @@ export default class Api
             console.log(error);
         }
     }
+    
+    static async editItem(id, type, description, amount)
+    {
+        //console.log(`${id} -- ${type} -- ${description} -- ${amount}`);
+        
+        try {
+            let response = await fetch(BaseUrl + '/api/edit', {
+                method: 'PUT',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: id,
+                    user_id: '1',
+                    type: type,
+                    description: description,
+                    amount: amount
+                }),
+            });
+            
+            return;
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 }
