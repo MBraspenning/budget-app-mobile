@@ -75,4 +75,25 @@ export default class Api
             console.log(error);
         }
     }
+    
+    static async deleteItem(id)
+    {
+        try {
+            let response = await fetch(BaseUrl + '/api/delete', {
+                method: 'DELETE',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: id
+                }),
+            });
+            
+            return;
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 }
