@@ -53,8 +53,6 @@ export default class Api
     
     static async editItem(id, type, description, amount)
     {
-        //console.log(`${id} -- ${type} -- ${description} -- ${amount}`);
-        
         try {
             let response = await fetch(BaseUrl + '/api/edit', {
                 method: 'PUT',
