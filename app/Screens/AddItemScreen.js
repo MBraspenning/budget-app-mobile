@@ -19,14 +19,15 @@ export default class AddItem extends Component
         super(props);
         this.state = {
             description: '', 
-            amount: 0,
+            amount: '',
             type: 'income'
         }        
     }
     
     submit = async () => { 
         await Api.postNewItem(this.state.type, this.state.description, this.state.amount)
-            .then(this.props.navigation.navigate('Main', {dataChanged: true}));                
+            .then(this.setState({type: 'income', description: '', amount: ''}))
+            .then(this.props.navigation.navigate('Main', {dataChanged: true}));                        
     }
     
     render() {
@@ -71,7 +72,8 @@ export default class AddItem extends Component
                             <TextInput 
                                 placeholder='Description'
                                 onChangeText={ (desc) => this.setState({description: desc}) } 
-                                style={[styles.input, styles.textInput]}   
+                                style={[styles.input, styles.textInput]}  
+                                value={this.state.description} 
                                 />
                         </View>
 
@@ -90,6 +92,7 @@ export default class AddItem extends Component
                                 keyboardType='numeric'
                                 onChangeText={ (amount) => this.setState({amount: amount}) }
                                 style={[styles.input, styles.textInput]}
+                                value={`${this.state.amount}`}
                                 />
                         </View>
 
