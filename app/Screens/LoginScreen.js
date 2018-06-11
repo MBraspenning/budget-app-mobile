@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { BaseUrl } from '../Config';
+
 import {
     View, 
     Text,
@@ -32,9 +34,32 @@ export default class Login extends Component
             return;
         }
         
-        await AsyncStorage.setItem('userToken', 'test');
+        try {
+            let response = await fetch(BaseUrl + '/api/login', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: claims.email,
+                    password: claims.password
+                }),
+            });
+            
+            let data = await response.json();
+            
+            console.log(data);
+            
+            //await AsyncStorage.setItem('userToken', 'test');
+            
+            return;
+        }
+        catch (error) {
+            console.log(error);
+        }                
         
-        this.props.navigation.navigate('SignedIn');
+        // this.props.navigation.navigate('SignedIn');
     }
     
     render(){
