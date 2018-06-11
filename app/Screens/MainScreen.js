@@ -7,6 +7,7 @@ import {
     ImageBackground,
     Button,
     AsyncStorage,
+    RefreshControl,
 } from 'react-native';
 
 import HeaderComponent from './Components/HeaderComponent';
@@ -24,6 +25,7 @@ export default class Main extends Component
             totalIncome: '0.00',
             totalExpense: '0.00',
             data: [],
+            refreshing: false,
         }
 
         this.props.navigation.setParams({dataChanged: false});
@@ -40,14 +42,12 @@ export default class Main extends Component
         {
             this._fetchFromServer();
             this.props.navigation.setParams({dataChanged: false});
-        }
-        
-        
+        }                
     }
-    
-    _fetchFromServer() 
+            
+    async _fetchFromServer() 
     {
-        Api.fetchAll()
+        await Api.fetchAll()
             .then((data) => {                                
                 this.setState({
                     data: data, 
@@ -55,9 +55,16 @@ export default class Main extends Component
                     totalIncome: data[0][0].total_income,
                     totalExpense: data[0][0].total_expense,
                 })                
-            });
+            });        
+    }
+    
+    _onRefresh() {
+        this.setState({refreshing: true});
         
-        console.log('--- update ---');
+        this._fetchFromServer()
+            .then(() => {
+                this.setState({refreshing: false});
+            });
     }
 
     render(){         
@@ -77,7 +84,15 @@ export default class Main extends Component
                 </View>
 
                 <View style={{ flexDirection: 'row', flex: 3 }}>
-                    <ScrollView style={{ flex: 1 }}>
+                    <ScrollView 
+                       style={{ flex: 1 }}
+                       refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh.bind(this)}
+                            />
+                        }
+                    >
                         <ListComponent 
                             incomeItems={this.state.data[1]} 
                             expenseItems={this.state.data[2]}
