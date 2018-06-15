@@ -1,3 +1,5 @@
+import { AsyncStorage } from 'react-native';
+
 import { BaseUrl } from './Config';
 
 export default class Api 
@@ -5,9 +7,12 @@ export default class Api
     static async fetchAll() 
     {
         try {
+            let accessToken = await AsyncStorage.getItem('access-token');
+            
             let response = await fetch(BaseUrl + '/api/fetch?user_id=1', {
                 method: 'GET',
                 headers: {
+                    Authorization: 'Bearer ' + accessToken,
                     Accept: 'application/json',
                 },
             });
