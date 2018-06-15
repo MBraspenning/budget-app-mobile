@@ -49,17 +49,29 @@ export default class Login extends Component
             
             let data = await response.json();
             
-            console.log(data);
-            
-            //await AsyncStorage.setItem('userToken', 'test');
+            if (data.error)
+            {
+                this.setState({InputError: data.error});
+                return;
+            }
+            else if (data.access_token) 
+            {
+                await AsyncStorage.setItem('access-token', data.access_token);
+                
+                this.props.navigation.navigate('SignedIn');
+                
+                return;
+            }
+            else 
+            {
+                this.setState({InputError: 'Something went wrong. Please try again.'})
+            }
             
             return;
         }
         catch (error) {
             console.log(error);
         }                
-        
-        // this.props.navigation.navigate('SignedIn');
     }
     
     render(){
