@@ -41,14 +41,16 @@ export default class Api
     static async postNewItem(type, description, amount)
     {
         try {
+            let accessToken = await AsyncStorage.getItem('access-token');
+            
             let response = await fetch(BaseUrl + '/api/insert', {
                 method: 'POST',
                 headers: {
+                    Authorization: 'Bearer ' + accessToken,
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    user_id: '1',
                     type: type,
                     description: description,
                     amount: amount
@@ -65,15 +67,17 @@ export default class Api
     static async editItem(id, type, description, amount)
     {
         try {
+            let accessToken = await AsyncStorage.getItem('access-token');
+            
             let response = await fetch(BaseUrl + '/api/edit', {
                 method: 'PUT',
                 headers: {
+                    Authorization: 'Bearer ' + accessToken,
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     id: id,
-                    user_id: '1',
                     type: type,
                     description: description,
                     amount: amount
@@ -90,9 +94,12 @@ export default class Api
     static async deleteItem(id, type, amount)
     {
         try {
+            let accessToken = await AsyncStorage.getItem('access-token');
+            
             let response = await fetch(BaseUrl + '/api/delete', {
                 method: 'DELETE',
                 headers: {
+                    Authorization: 'Bearer ' + accessToken,
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
@@ -100,7 +107,6 @@ export default class Api
                     id: id,
                     type: type,
                     amount: amount,
-                    user_id: '1'
                 }),
             });
             
