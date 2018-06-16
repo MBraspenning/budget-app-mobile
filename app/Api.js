@@ -9,7 +9,7 @@ export default class Api
         try {
             let accessToken = await AsyncStorage.getItem('access-token');
             
-            let response = await fetch(BaseUrl + '/api/fetch?user_id=1', {
+            let response = await fetch(BaseUrl + '/api/fetch', {
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + accessToken,

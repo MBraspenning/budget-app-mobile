@@ -48,12 +48,12 @@ export default class Main extends Component
     async _fetchFromServer() 
     {
         await Api.fetchAll()
-            .then((data) => {                                
+            .then((data) => {
                 this.setState({
                     data: data, 
-                    totalBudget: data[0][0].total_budget,
-                    totalIncome: data[0][0].total_income,
-                    totalExpense: data[0][0].total_expense,
+                    totalBudget: data[0].length > 0 ? data[0][0].total_budget : '0.00',
+                    totalIncome: data[0].length > 0 ? data[0][0].total_income : '0.00',
+                    totalExpense: data[0].length > 0 ? data[0][0].total_expense : '0.00',
                 })                
             });        
     }
