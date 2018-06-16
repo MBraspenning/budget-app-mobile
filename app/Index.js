@@ -2,7 +2,7 @@ import React from 'react';
 
 import { createRootNavigator } from './Router';
 
-import { isLoggedIn } from './Authentication';
+import NavigationService from './NavigationService';
 
 export default class App extends React.Component {
   constructor(props)
@@ -15,7 +15,13 @@ export default class App extends React.Component {
         
     render() {
         const Layout = createRootNavigator();
-        return <Layout />;
+        return ( 
+            <Layout
+                ref={navigatorRef => {
+                    NavigationService.setTopLevelNavigator(navigatorRef);
+                }}
+            />
+        );
     }
 }
 

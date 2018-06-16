@@ -2,6 +2,8 @@ import { AsyncStorage } from 'react-native';
 
 import { BaseUrl } from './Config';
 
+import NavigationService from './NavigationService';
+
 export default class Api 
 {
     static async fetchAll() 
@@ -30,7 +32,8 @@ export default class Api
             }
             else 
             {
-                return false;
+                await AsyncStorage.clear();                
+                NavigationService.navigate('SignedOut');
             }
         }
         catch (error) {
@@ -57,7 +60,11 @@ export default class Api
                 }),
             });
             
-            return;
+            if (!response.ok)
+            {
+                await AsyncStorage.clear();                
+                NavigationService.navigate('SignedOut');
+            }
         }
         catch (error) {
             console.log(error);
@@ -84,7 +91,11 @@ export default class Api
                 }),
             });
             
-            return;
+            if (!response.ok)
+            {
+                await AsyncStorage.clear();                
+                NavigationService.navigate('SignedOut');
+            }
         }
         catch (error) {
             console.log(error);
@@ -110,7 +121,11 @@ export default class Api
                 }),
             });
             
-            return;
+            if (!response.ok)
+            {
+                await AsyncStorage.clear();                
+                NavigationService.navigate('SignedOut');
+            }
         }
         catch (error) {
             console.log(error);
