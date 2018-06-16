@@ -57,7 +57,7 @@ export default class Login extends Component
             else if (data.access_token) 
             {
                 await AsyncStorage.setItem('access-token', data.access_token);
-                console.log(data.access_token);
+
                 this.props.navigation.navigate('SignedIn');
                 
                 return;

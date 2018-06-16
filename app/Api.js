@@ -16,16 +16,22 @@ export default class Api
                     Accept: 'application/json',
                 },
             });
-                        
-            let data = await response.json();             
             
-            let budget = JSON.parse(data[0]);
-            let income = JSON.parse(data[1]).reverse();
-            let expense = JSON.parse(data[2]).reverse();
+            if (response.ok)
+            {
+                let data = await response.json();             
+                let budget = JSON.parse(data[0]);
+                let income = JSON.parse(data[1]).reverse();
+                let expense = JSON.parse(data[2]).reverse();
             
-            let dataToReturn = [budget, income, expense];            
+                let dataToReturn = [budget, income, expense];            
             
-            return dataToReturn;
+                return dataToReturn;                    
+            }
+            else 
+            {
+                return false;
+            }
         }
         catch (error) {
             console.log(error);
