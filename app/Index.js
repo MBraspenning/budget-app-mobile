@@ -1,3 +1,9 @@
+// == Remove this to enable warnings again ==
+
+console.disableYellowBox = true;
+
+// ==========================================
+
 import React from 'react';
 
 import { createRootNavigator } from './Router';
@@ -8,9 +14,6 @@ export default class App extends React.Component {
   constructor(props)
     {
         super(props);
-        this.state = { 
-            isLoggedIn: false,
-        }
     }
         
     render() {

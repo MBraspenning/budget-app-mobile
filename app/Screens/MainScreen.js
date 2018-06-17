@@ -20,15 +20,15 @@ export default class Main extends Component
     constructor(props)
     {
         super(props);
-        this.state = { 
+        this.state = {             
             totalBudget: '0.00',
             totalIncome: '0.00',
             totalExpense: '0.00',
             data: [],
             refreshing: false,
         }
-
-        this.props.navigation.setParams({dataChanged: false});
+        
+        this.props.navigation.setParams({dataChanged: false});        
     }
     
     componentDidMount() 
@@ -48,23 +48,26 @@ export default class Main extends Component
     async _fetchFromServer() 
     {
         await Api.fetchAll()
-            .then(async (data) => {                                 
-                this.setState({
-                    data: data, 
-                    totalBudget: data[0].length > 0 ? data[0][0].total_budget : '0.00',
-                    totalIncome: data[0].length > 0 ? data[0][0].total_income : '0.00',
-                    totalExpense: data[0].length > 0 ? data[0][0].total_expense : '0.00',
-                });                     
+            .then(async (data) => { 
+                if (data)
+                {
+                    this.setState({
+                        data: data, 
+                        totalBudget: data[0].length > 0 ? data[0][0].total_budget : '0.00',
+                        totalIncome: data[0].length > 0 ? data[0][0].total_income : '0.00',
+                        totalExpense: data[0].length > 0 ? data[0][0].total_expense : '0.00',
+                    });    
+                }                
             });        
     }
     
     _onRefresh() {
         this.setState({refreshing: true});
-        
+
         this._fetchFromServer()
             .then(() => {
-                this.setState({refreshing: false});
-            });
+                this.setState({refreshing: false});                                    
+            });             
     }
 
     render(){         
