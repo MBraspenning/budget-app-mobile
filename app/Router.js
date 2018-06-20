@@ -3,6 +3,7 @@ import React from 'react';
 import { createStackNavigator, createSwitchNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import LoginScreen from './Screens/LoginScreen';
+import RegisterScreen from './Screens/RegisterScreen';
 import MainScreen from './Screens/MainScreen';
 import AddItemScreen from './Screens/AddItemScreen';
 import AuthLoadingScreen from './Screens/AuthLoadingScreen';
@@ -15,7 +16,13 @@ export const SignedOutStack = createStackNavigator({
        navigationOptions: {
            title: 'Login',
        }
-   }     
+    },
+    Register: {
+        screen: RegisterScreen,
+        navigationOptions: {
+            title: 'Register',
+        }
+    }
 }); 
 
 export const SignedInStack = createBottomTabNavigator(
