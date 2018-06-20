@@ -45,7 +45,7 @@ export default class Register extends Component
 //        
 //        if (claims.password !== claims.confirmPassword)
 //        {
-//            this.setState({InputError: 'Passwords don\'t match, please verify you entered the correct password.'});
+//            this.setState({InputError: 'Passwords don\'t match.'});
 //            return;
 //        }
         
@@ -68,11 +68,7 @@ export default class Register extends Component
             
             if (data.error)
             {
-                //this.setState({InputError: data.error});
-                console.log(data.error);
-                console.log('------');
                 this.setState({ApiInputErrors: data.error});
-                console.log(this.state.ApiInputErrors);
                 
                 return;
             }
@@ -104,17 +100,55 @@ export default class Register extends Component
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
                     
                     {
-                        this.state.InputError !== '' || Object.keys(this.state.ApiInputErrors).length > 0
+                        this.state.InputError !== '' 
                         ? 
                             <View style={[styles.elementWrapper, styles.errorMessage]}>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.errorText}>
                                         {this.state.inputError}
-                                        {this.state.ApiInputErrors.username_error}
-                                        {this.state.ApiInputErrors.email_error}
-                                        {this.state.ApiInputErrors.password_error}
-                                        {this.state.ApiInputErrors.confirm_password_error}
-                                    </Text>
+                                    </Text>                                    
+                                </View>
+                            </View>
+                        : null                                                
+                    }
+                    
+                    {
+                        Object.keys(this.state.ApiInputErrors).length > 0
+                        ?
+                            <View style={[styles.elementWrapper, styles.errorMessage]}>
+                                <View style={{ flex: 1 }}>
+                                    {
+                                        this.state.ApiInputErrors.hasOwnProperty('username_error')
+                                        ?
+                                            <Text style={styles.errorText}>
+                                                {this.state.ApiInputErrors.username_error}
+                                            </Text>
+                                        : null
+                                    }
+                                    {
+                                        this.state.ApiInputErrors.hasOwnProperty('email_error')
+                                        ?
+                                            <Text style={styles.errorText}>
+                                                {this.state.ApiInputErrors.email_error}
+                                            </Text>
+                                        : null
+                                    }
+                                    {
+                                        this.state.ApiInputErrors.hasOwnProperty('password_error')
+                                        ?
+                                            <Text style={styles.errorText}>
+                                                {this.state.ApiInputErrors.password_error}
+                                            </Text>
+                                        : null
+                                    }
+                                    {
+                                        this.state.ApiInputErrors.hasOwnProperty('confirm_password_error')
+                                        ?
+                                            <Text style={styles.errorText}>
+                                                {this.state.ApiInputErrors.confirm_password_error}
+                                            </Text>
+                                        : null
+                                    }         
                                 </View>
                             </View>
                         : null
@@ -208,7 +242,7 @@ export default class Register extends Component
 
 const styles = StyleSheet.create({
     elementWrapper: {
-        marginVertical: 15, 
+        marginVertical: 10, 
         flexDirection: 'row',
         marginHorizontal: 30,
     },
