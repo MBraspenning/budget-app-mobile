@@ -31,23 +31,23 @@ export default class Register extends Component
     }
     
     _registerAsync = async (claims) => {
-//        if 
-//        (
-//            claims.username === '' || 
-//            claims.email === '' ||
-//            claims.password === '' || 
-//            claims.confirmPassword === ''
-//        ) 
-//        {
-//            this.setState({InputError: 'Please fill in your username, email and password.'});            
-//            return;
-//        }
-//        
-//        if (claims.password !== claims.confirmPassword)
-//        {
-//            this.setState({InputError: 'Passwords don\'t match.'});
-//            return;
-//        }
+        if 
+        (
+            claims.username === '' || 
+            claims.email === '' ||
+            claims.password === '' || 
+            claims.confirmPassword === ''
+        ) 
+        {
+            this.setState({InputError: 'Please fill in your username, email and password.'});            
+            return;
+        }
+        
+        if (claims.password !== claims.confirmPassword)
+        {
+            this.setState({InputError: 'Passwords don\'t match.'});
+            return;
+        }
         
         try {
             let response = await fetch(BaseUrl + '/api/register', {
