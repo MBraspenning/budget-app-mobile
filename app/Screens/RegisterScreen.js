@@ -188,7 +188,16 @@ export default class Register extends Component
                             onPress={() => this._loginAsync(this.state.Claims)}
                             style={styles.registerButton}
                         >
-                            <Text style={{ color: '#004085', fontSize: 25, }}>Register</Text>                    
+                            <Text style={{ color: '#004085', fontSize: 20, textAlign: 'center', }}>Register</Text>                    
+                        </TouchableOpacity>
+                    </View>
+                    
+                    <View style={styles.elementWrapper}>
+                        <TouchableOpacity
+                            onPress={() => navigate('Login')} 
+                            style={{ width: 300 }}  
+                        >
+                            <Text style={{ textAlign: 'right', color: '#004085', fontSize: 15 }}>Already have an account?</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -202,7 +211,7 @@ const styles = StyleSheet.create({
         marginVertical: 20,    
     },
     input: {
-        fontSize: 15,    
+        fontSize: 20,    
     }, 
     registerInputField: { 
         borderWidth: 1, 
@@ -218,6 +227,7 @@ const styles = StyleSheet.create({
         borderRadius: 5, 
         paddingVertical: 10, 
         paddingHorizontal: 20,
+        width: 300,
         backgroundColor: '#cce5ff'
     },
     errorMessage: {
