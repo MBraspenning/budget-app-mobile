@@ -1,6 +1,6 @@
 // == Remove this to enable warnings again ==
 
-console.disableYellowBox = true;
+console.disableYellowBox = false;
 
 // ==========================================
 

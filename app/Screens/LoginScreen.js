@@ -150,7 +150,7 @@ export default class Login extends Component
 
 const styles = StyleSheet.create({
     elementWrapper: {
-        marginVertical: 20,
+        marginVertical: 15,
         flexDirection: 'row',
         marginHorizontal: 30,
     },

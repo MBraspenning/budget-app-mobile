@@ -20,73 +20,34 @@ export default class Register extends Component
         super(props);
         this.state = { 
             Claims: {
+                username: '',
                 email: '',
                 password: '',
                 confirmPassword: '',
             },
-            InputError: '',            
+            InputError: '', 
+            ApiInputErrors: {},
         }
     }
     
-//    _loginAsync = async (claims) => {
-//        if (claims.email === '' || claims.password === '') 
+    _registerAsync = async (claims) => {
+//        if 
+//        (
+//            claims.username === '' || 
+//            claims.email === '' ||
+//            claims.password === '' || 
+//            claims.confirmPassword === ''
+//        ) 
 //        {
-//            this.setState({InputError: 'Please fill in your email and password.'});            
+//            this.setState({InputError: 'Please fill in your username, email and password.'});            
 //            return;
 //        }
 //        
-//        try {
-//            let response = await fetch(BaseUrl + '/api/login', {
-//                method: 'POST',
-//                headers: {
-//                    Accept: 'application/json',
-//                    'Content-Type': 'application/json',
-//                },
-//                body: JSON.stringify({
-//                    email: claims.email,
-//                    password: claims.password
-//                }),
-//            });
-//            
-//            let data = await response.json();
-//            
-//            if (data.error)
-//            {
-//                this.setState({InputError: data.error});
-//                return;
-//            }
-//            else if (data.access_token) 
-//            {
-//                await AsyncStorage.setItem('access-token', data.access_token);
-//
-//                this.props.navigation.navigate('SignedIn');
-//                
-//                return;
-//            }
-//            else 
-//            {
-//                this.setState({InputError: 'Something went wrong. Please try again.'})
-//            }
-//            
+//        if (claims.password !== claims.confirmPassword)
+//        {
+//            this.setState({InputError: 'Passwords don\'t match, please verify you entered the correct password.'});
 //            return;
 //        }
-//        catch (error) {
-//            console.log(error);
-//        }                
-//    }
-    
-    _registerAsync = async (claims) => {
-        if (claims.email === '' || claims.password === '' || claims.confirmPassword === '') 
-        {
-            this.setState({InputError: 'Please fill in your email and password.'});            
-            return;
-        }
-        
-        if (claims.password !== claims.confirmPassword)
-        {
-            this.setState({InputError: 'Passwords don\'t match.'});
-            return;
-        }
         
         try {
             let response = await fetch(BaseUrl + '/api/register', {
@@ -96,8 +57,10 @@ export default class Register extends Component
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    username: claims.username,
                     email: claims.email,
                     password: claims.password,
+                    confirmPassword: claims.confirmPassword,
                 }),
             });
             
@@ -105,7 +68,12 @@ export default class Register extends Component
             
             if (data.error)
             {
-                this.setState({InputError: data.error});
+                //this.setState({InputError: data.error});
+                console.log(data.error);
+                console.log('------');
+                this.setState({ApiInputErrors: data.error});
+                console.log(this.state.ApiInputErrors);
+                
                 return;
             }
             else if (data.access_token) 
@@ -136,15 +104,36 @@ export default class Register extends Component
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
                     
                     {
-                        this.state.InputError !== ''
+                        this.state.InputError !== '' || Object.keys(this.state.ApiInputErrors).length > 0
                         ? 
                             <View style={[styles.elementWrapper, styles.errorMessage]}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.errorText}>{this.state.InputError}</Text>
+                                    <Text style={styles.errorText}>
+                                        {this.state.inputError}
+                                        {this.state.ApiInputErrors.username_error}
+                                        {this.state.ApiInputErrors.email_error}
+                                        {this.state.ApiInputErrors.password_error}
+                                        {this.state.ApiInputErrors.confirm_password_error}
+                                    </Text>
                                 </View>
                             </View>
                         : null
                     }
+                    
+                    <View style={[styles.elementWrapper, styles.registerInputField]}>
+                        <View style={{ flex: 1 }}>
+                            <TextInput 
+                                placeholder='Username'
+                                autoCapitalize='none'
+                                onChangeText={ (username) => {
+                                    const newClaims = Object.assign({}, this.state.Claims, { username: username });
+                                    this.setState({Claims: newClaims});   
+                                    }                             
+                                } 
+                                style={[styles.input]}   
+                            />
+                        </View>
+                    </View>
                     
                     <View style={[styles.elementWrapper, styles.registerInputField]}>
                         <View style={{ flex: 1 }}>
@@ -219,7 +208,7 @@ export default class Register extends Component
 
 const styles = StyleSheet.create({
     elementWrapper: {
-        marginVertical: 20, 
+        marginVertical: 15, 
         flexDirection: 'row',
         marginHorizontal: 30,
     },
