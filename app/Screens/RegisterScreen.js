@@ -139,66 +139,77 @@ export default class Register extends Component
                         this.state.InputError !== ''
                         ? 
                             <View style={[styles.elementWrapper, styles.errorMessage]}>
-                                <Text style={styles.errorText}>{this.state.InputError}</Text>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.errorText}>{this.state.InputError}</Text>
+                                </View>
                             </View>
                         : null
                     }
                     
                     <View style={[styles.elementWrapper, styles.registerInputField]}>
-                        <TextInput 
-                            placeholder='Email'
-                            autoCapitalize='none'
-                            onChangeText={ (email) => {
-                                const newClaims = Object.assign({}, this.state.Claims, { email: email });
-                                this.setState({Claims: newClaims});   
-                                }                             
-                            } 
-                            style={[styles.input]}   
-                        />
+                        <View style={{ flex: 1 }}>
+                            <TextInput 
+                                placeholder='Email'
+                                autoCapitalize='none'
+                                onChangeText={ (email) => {
+                                    const newClaims = Object.assign({}, this.state.Claims, { email: email });
+                                    this.setState({Claims: newClaims});   
+                                    }                             
+                                } 
+                                style={[styles.input]}   
+                            />
+                        </View>
                     </View>
 
                     <View style={[styles.elementWrapper, styles.registerInputField]}>
-                        <TextInput 
-                            placeholder='Password'
-                            secureTextEntry={true}
-                            onChangeText={ (password) => {
-                                const newClaims = Object.assign({}, this.state.Claims, { password: password });
-                                this.setState({Claims: newClaims}); 
-                                }                            
-                            }
-                            style={[styles.input]}
-                        />
+                        <View style={{ flex: 1 }}>                    
+                            <TextInput 
+                                placeholder='Password'
+                                secureTextEntry={true}
+                                onChangeText={ (password) => {
+                                    const newClaims = Object.assign({}, this.state.Claims, { password: password });
+                                    this.setState({Claims: newClaims}); 
+                                    }                            
+                                }
+                                style={[styles.input]}
+                            />
+                        </View>
                     </View>
                     
                     <View style={[styles.elementWrapper, styles.registerInputField]}>
-                        <TextInput 
-                            placeholder='Confirm Password'
-                            secureTextEntry={true}
-                            onChangeText={ (confirmPassword) => {
-                                const newClaims = Object.assign({}, this.state.Claims, { confirmPassword: confirmPassword });
-                                this.setState({Claims: newClaims}); 
-                                }                            
-                            }
-                            style={[styles.input]}
-                        />
+                        <View style={{ flex: 1 }}>                        
+                            <TextInput 
+                                placeholder='Confirm Password'
+                                secureTextEntry={true}
+                                onChangeText={ (confirmPassword) => {
+                                    const newClaims = Object.assign({}, this.state.Claims, { confirmPassword: confirmPassword });
+                                    this.setState({Claims: newClaims}); 
+                                    }                            
+                                }
+                                style={[styles.input]}
+                            />
+                        </View>
                     </View>
 
                     <View style={styles.elementWrapper}>
-                        <TouchableOpacity
-                            onPress={() => this._loginAsync(this.state.Claims)}
-                            style={styles.registerButton}
-                        >
-                            <Text style={{ color: '#004085', fontSize: 20, textAlign: 'center', }}>Register</Text>                    
-                        </TouchableOpacity>
+                        <View style={{ flex: 1 }}>                        
+                            <TouchableOpacity
+                                onPress={() => this._registerAsync(this.state.Claims)}
+                                style={styles.registerButton}
+                            >
+                                <Text style={{ color: '#004085', fontSize: 20, textAlign: 'center', }}>Register</Text>                    
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     
                     <View style={styles.elementWrapper}>
-                        <TouchableOpacity
-                            onPress={() => navigate('Login')} 
-                            style={{ width: 300 }}  
-                        >
-                            <Text style={{ textAlign: 'right', color: '#004085', fontSize: 15 }}>Already have an account?</Text>
-                        </TouchableOpacity>
+                        <View style={{ flex: 1 }}>                       
+                            <TouchableOpacity
+                                onPress={() => navigate('Login')}                                  
+                            >
+                                <Text style={{ textAlign: 'right', color: '#004085', fontSize: 15 }}>Already have an account?</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -208,7 +219,9 @@ export default class Register extends Component
 
 const styles = StyleSheet.create({
     elementWrapper: {
-        marginVertical: 20,    
+        marginVertical: 20, 
+        flexDirection: 'row',
+        marginHorizontal: 30,
     },
     input: {
         fontSize: 20,    
@@ -219,7 +232,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingVertical: 10,
         paddingHorizontal: 20,
-        width: 300,
     },
     registerButton: { 
         borderWidth: 1, 
@@ -227,7 +239,6 @@ const styles = StyleSheet.create({
         borderRadius: 5, 
         paddingVertical: 10, 
         paddingHorizontal: 20,
-        width: 300,
         backgroundColor: '#cce5ff'
     },
     errorMessage: {
@@ -237,7 +248,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingVertical: 10,
         paddingHorizontal: 20,
-        width: 300,
     },
     errorText: {
         color: '#721c24',        

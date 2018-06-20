@@ -85,54 +85,63 @@ export default class Login extends Component
                         this.state.InputError !== ''
                         ? 
                             <View style={[styles.elementWrapper, styles.errorMessage]}>
-                                <Text style={styles.errorText}>{this.state.InputError}</Text>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.errorText}>{this.state.InputError}</Text>
+                                </View>
                             </View>
                         : null
                     }
                     
                     <View style={[styles.elementWrapper, styles.loginInputField]}>
-                        <TextInput 
-                            placeholder='Email'
-                            autoCapitalize='none'
-                            onChangeText={ (email) => {
-                                const newClaims = Object.assign({}, this.state.Claims, { email: email });
-                                this.setState({Claims: newClaims});   
-                                }                             
-                            } 
-                            style={[styles.input]}   
-                        />
+                        <View style={{ flex: 1 }}>
+                            <TextInput 
+                                placeholder='Email'
+                                autoCapitalize='none'
+                                onChangeText={ (email) => {
+                                    const newClaims = Object.assign({}, this.state.Claims, { email: email });
+                                    this.setState({Claims: newClaims});   
+                                    }                             
+                                } 
+                                style={[styles.input]}   
+                            />
+                        </View>
                     </View>
 
                     <View style={[styles.elementWrapper, styles.loginInputField]}>
-                        <TextInput 
-                            placeholder='Password'
-                            secureTextEntry={true}
-                            onChangeText={ (password) => {
-                                const newClaims = Object.assign({}, this.state.Claims, { password: password });
-                                this.setState({Claims: newClaims}); 
-                                }                            
-                            }
-                            style={[styles.input]}
-                        />
+                        <View style={{ flex: 1 }}>
+                            <TextInput 
+                                placeholder='Password'
+                                secureTextEntry={true}
+                                onChangeText={ (password) => {
+                                    const newClaims = Object.assign({}, this.state.Claims, { password: password });
+                                    this.setState({Claims: newClaims}); 
+                                    }                            
+                                }
+                                style={[styles.input]}
+                            />
+                        </View>
                     </View>
 
                     <View style={styles.elementWrapper}>
-                        <TouchableOpacity
-                            onPress={() => this._loginAsync(this.state.Claims)}
-                            style={styles.loginButton}
-                        >
-                            <Text style={{ color: '#004085', fontSize: 20, textAlign: 'center', }}>Login</Text>                    
-                        </TouchableOpacity>                        
+                        <View style={{ flex: 1 }}>
+                            <TouchableOpacity
+                                onPress={() => this._loginAsync(this.state.Claims)}
+                                style={styles.loginButton}
+                            >
+                                <Text style={{ color: '#004085', fontSize: 20, textAlign: 'center', }}>Login</Text>                    
+                            </TouchableOpacity>                        
+                        </View>
                     </View>
                     
                     <View style={styles.elementWrapper}>
-                        <TouchableOpacity
-                            onPress={() => navigate('Register')} 
-                            style={{ width: 300 }}  
-                        >
-                            <Text style={{ textAlign: 'right', color: '#004085', fontSize: 15 }}>Don't have an account yet?</Text>
-                        </TouchableOpacity>
-                    </View>
+                        <View style={{ flex: 1 }}>
+                            <TouchableOpacity
+                                onPress={() => navigate('Register')}                                                            
+                            >
+                                <Text style={{ textAlign: 'right', color: '#004085', fontSize: 15 }}>Don't have an account yet?</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>                
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -141,7 +150,9 @@ export default class Login extends Component
 
 const styles = StyleSheet.create({
     elementWrapper: {
-        marginVertical: 20,    
+        marginVertical: 20,
+        flexDirection: 'row',
+        marginHorizontal: 30,
     },
     input: {
         fontSize: 20,    
@@ -152,7 +163,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingVertical: 10,
         paddingHorizontal: 20,
-        width: 300,
     },
     loginButton: { 
         borderWidth: 1, 
@@ -160,7 +170,6 @@ const styles = StyleSheet.create({
         borderRadius: 5, 
         paddingVertical: 10, 
         paddingHorizontal: 20,
-        width: 300,
         backgroundColor: '#cce5ff'
     },
     errorMessage: {
@@ -170,7 +179,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingVertical: 10,
         paddingHorizontal: 20,
-        width: 300,
     },
     errorText: {
         color: '#721c24',        
