@@ -72,11 +72,12 @@ export default class Register extends Component
                 
                 return;
             }
-            else if (data.access_token) 
+            else if (data.success) 
             {
-                await AsyncStorage.setItem('access-token', data.access_token);
-
-                this.props.navigation.navigate('SignedIn');
+                this.props.navigation.navigate('Login', { 
+                    successMessage: data.success,
+                    email: claims.email,
+                });
                 
                 return;
             }

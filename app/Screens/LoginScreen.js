@@ -20,7 +20,7 @@ export default class Login extends Component
         super(props);
         this.state = { 
             Claims: {
-                email: '',
+                usernameOrEmail: '',
                 password: '',
             },
             InputError: '',            
@@ -42,7 +42,7 @@ export default class Login extends Component
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email: claims.email,
+                    login: claims.usernameOrEmail,
                     password: claims.password
                 }),
             });
@@ -76,6 +76,7 @@ export default class Login extends Component
     
     render(){
         const { navigate } = this.props.navigation;
+        const successMessage = this.props.navigation.getParam('successMessage', '');
         
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -92,13 +93,24 @@ export default class Login extends Component
                         : null
                     }
                     
+                    {
+                        successMessage !== ''
+                        ? 
+                            <View style={[styles.elementWrapper, styles.successMessage]}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.successText}>{successMessage}</Text>
+                                </View>
+                            </View>
+                        : null
+                    }
+                    
                     <View style={[styles.elementWrapper, styles.loginInputField]}>
                         <View style={{ flex: 1 }}>
                             <TextInput 
-                                placeholder='Email'
+                                placeholder='Username or Email'
                                 autoCapitalize='none'
-                                onChangeText={ (email) => {
-                                    const newClaims = Object.assign({}, this.state.Claims, { email: email });
+                                onChangeText={ (login) => {
+                                    const newClaims = Object.assign({}, this.state.Claims, { usernameOrEmail: login });
                                     this.setState({Claims: newClaims});   
                                     }                             
                                 } 
@@ -182,5 +194,16 @@ const styles = StyleSheet.create({
     },
     errorText: {
         color: '#721c24',        
+    },
+    successMessage: {
+        backgroundColor: '#d4edda',
+        borderWidth: 1,
+        borderColor: '#c3e6cb',
+        borderRadius: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+    },
+    successText: {
+        color: '#155724', 
     }
 })
